@@ -107,10 +107,10 @@ class TbEtapaProjeto{
               shtreinamento.tbetapaprojeto
             SET
               nmetapa = '".$objTbProjeto->Get("nmetapa")."',  
-              dtprevistainicio = '".$objTbProjeto->Get("dtprevistainicio")."'
-              dtprevistatermino = '".$objTbProjeto->Get("dtprevistatermino")."'
-              flstatus = '".$objTbProjeto->Get("flstatus")."'
-              idresponsaveletapaprojeto = '".$objTbProjeto->Get("idresponsaveletapaprojeto")."'
+              dtprevistainicio = '".$objTbProjeto->Get("dtprevistainicio")."',
+              dtprevistatermino = '".$objTbProjeto->Get("dtprevistatermino")."',
+              flstatus = '".$objTbProjeto->Get("flstatus")."',
+              idresponsaveletapaprojeto = '".$objTbProjeto->Get("idresponsaveletapaprojeto")."',
             WHERE 
               idetapaprojeto = ".$objTbEtapaProjeto->Get("idetapaprojeto").";";
     if(!$drblink->Exec($dsSql)){
