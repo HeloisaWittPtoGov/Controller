@@ -1,13 +1,13 @@
 <?php
 
-class TbResponsavel{
+class TbResponsavelEtapaProjeto{
 
   //-----------------------------------------------------------------------------------------------------------------------------------------//
   // Métodos de Definição da classe [CLASS]
   //-----------------------------------------------------------------------------------------------------------------------------------------//
   
   // Propriedades Persistentes
-  private $idresponsavel;
+  private $idresponsaveletapaprojeto;
   private $nmresponsavel;
   private $dssetor;
   private $dsfuncao;
@@ -17,7 +17,7 @@ class TbResponsavel{
    * Método Construct para limpeza do Objeto
    */
   public function __construct(){
-    $this->idresponsavel = "";
+    $this->idresponsaveletapaprojeto = "";
     $this->nmresponsavel = "";
     $this->dssetor = "";
     $this->dsfuncao = "";
@@ -27,30 +27,30 @@ class TbResponsavel{
   /**
    * Método Set para carga do objeto
    **/  
-  public function Set($prpTbResponsavel, $vlTbResponsavel){
-    $this->$prpTbResponsavel = $vlTbResponsavel;
+  public function Set($prpTbResponsavelEtapaProjeto, $vlTbResponsavelEtapaProjeto){
+    $this->$prpTbResponsavelEtapaProjeto = $vlTbResponsavelEtapaProjeto;
   }
 
   /**
    * Método Get para carga do objeto
    **/  
-  public function Get($prpTbResponsavel){
-    return $this->$prpTbResponsavel;
+  public function Get($prpTbResponsavelEtapaProjeto){
+    return $this->$prpTbResponsavelEtapaProjeto;
   }
 
   /**
    * Carrega o objeto com os dados do resultSet de uma query
    * @param $resSet
-   * @return TbResponsavel
+   * @return TbResponsavelEtapaProjeto
    */
   public function LoadObject($resSet){
-    $objTbResponsavel = new TbResponsavel();
-    $objTbResponsavel->Set("idresponsavel", $resSet["idresponsavel"]);
-    $objTbResponsavel->Set("nmresponsavel", $resSet["nmresponsavel"]);
-    $objTbResponsavel->Set("dssetor", $resSet["dssetor"]);
-    $objTbResponsavel->Set("dsfuncao", $resSet["dsfuncao"]);
-    $objTbResponsavel->Set("dsemail", $resSet["dsemail"]);
-    return $objTbResponsavel;
+    $objTbResponsavelEtapaProjeto = new TbResponsavelEtapaProjeto();
+    $objTbResponsavelEtapaProjeto->Set("idresponsaveletapaprojeto", $resSet["idresponsaveletapaprojeto"]);
+    $objTbResponsavelEtapaProjeto->Set("nmresponsavel", $resSet["nmresponsavel"]);
+    $objTbResponsavelEtapaProjeto->Set("dssetor", $resSet["dssetor"]);
+    $objTbResponsavelEtapaProjeto->Set("dsfuncao", $resSet["dsfuncao"]);
+    $objTbResponsavelEtapaProjeto->Set("dsemail", $resSet["dsemail"]);
+    return $objTbResponsavelEtapaProjeto;
   }
 
   //-----------------------------------------------------------------------------------------------------------------------------------------//
@@ -58,27 +58,27 @@ class TbResponsavel{
   //-----------------------------------------------------------------------------------------------------------------------------------------//
 
   /**
-   *Insere um registro na tabela TbResponsavel
-   * @param mixed $objTbResponsavel->Objeto com os dados a serem inseridos
+   *Insere um registro na tabela TbResponsavelEtapaProjeto
+   * @param mixed $objTbResponsavelEtapaProjeto->Objeto com os dados a serem inseridos
    * @return string[]
    */
-  public function Insert($objTbResponsavel){
+  public function Insert($objTbResponsavelEtapaProjeto){
     $dtbLink = new DtbCliente();
 
     $dsSql = "INSERT INTO 
                 shtreinamento.tbresponsavel(
-                  idresponsavel,
+                  idresponsaveletapaprojeto,
                   nmresponsavel,
                   dssetor,
                   dsfuncao,
                   dsemail
                 )
                 VALUES(
-                  (SELECT NEXTVAL('shtreinamento.sqidresponsavel')),
-                  '".$objTbResponsavel->Get("nmresponsavel")."',
-                  '".$objTbResponsavel->Get("dssetor")."',
-                  '".$objTbResponsavel->Get("dsfuncao")."',
-                  '".$objTbResponsavel->Get("dsemail")."'
+                  (SELECT NEXTVAL('shtreinamento.sqidresponsaveletapaprojeto')),
+                  '".$objTbResponsavelEtapaProjeto->Get("nmresponsavel")."',
+                  '".$objTbResponsavelEtapaProjeto->Get("dssetor")."',
+                  '".$objTbResponsavelEtapaProjeto->Get("dsfuncao")."',
+                  '".$objTbResponsavelEtapaProjeto->Get("dsemail")."'
                 )";
     
     if(!$dtbLink->Exec($dsSql)){
@@ -90,23 +90,23 @@ class TbResponsavel{
   }
 
   /**
-   * Altera um registro na tabela TbResponsavel
-   * @param $objTbResponsavel->Objeto com dados a serem alterados
+   * Altera um registro na tabela TbResponsavelEtapaProjeto
+   * @param $objTbResponsavelEtapaProjeto->Objeto com dados a serem alterados
    * @return string[]
    */
 
-  public function Update($objTbResponsavel){
+  public function Update($objTbResponsavelEtapaProjeto){
     $dtbLink = new DtbCliente();
 
     $dsSql - "UPDATE
                 shrteinamento.tbresponsavel
               SET
-                nmresponsavel = '".$objTbResponsavel->Get("nmresponsavel")."',
-                dssetor = '".$objTbResponsavel->Get("dssetor")."',
-                dsfuncao = '".$objTbResponsavel->Get("dsfuncao")."',
-                dsemail = '".$objTbResponsavel->Get("dsemail")."'
+                nmresponsavel = '".$objTbResponsavelEtapaProjeto->Get("nmresponsavel")."',
+                dssetor = '".$objTbResponsavelEtapaProjeto->Get("dssetor")."',
+                dsfuncao = '".$objTbResponsavelEtapaProjeto->Get("dsfuncao")."',
+                dsemail = '".$objTbResponsavelEtapaProjeto->Get("dsemail")."'
               WHERE
-                idresponsavel = ".$objTbResponsavel->Get('idresponsavel').";";
+                idresponsaveletapaprojeto = ".$objTbResponsavelEtapaProjeto->Get('idresponsaveletapaprojeto').";";
     if(!$dtbLink->Exec($dsSql)){
       $arrMsg = $dtbLink->getMessage();
     } else{
@@ -116,17 +116,17 @@ class TbResponsavel{
   }
 
   /**
-   * Elimina um registro na tabela TbResponsavel
-   * @param $objTbResponsavel->Obejto com os dados a serem eliminados
+   * Elimina um registro na tabela TbResponsavelEtapaProjeto
+   * @param $objTbResponsavelEtapaProjeto->Obejto com os dados a serem eliminados
    * @return string[]
    */
-  public function Delete($objTbResponsavel){
+  public function Delete($objTbResponsavelEtapaProjeto){
     $dtLink = new DtbCliente();
 
     $dsSql = "DELETE FROM
                 shrteinamento.tbresponsavel
               WHERE
-                  idresponsavel = ".$objTbResponsavel->Get('idresponsavel').";";
+                  idresponsaveletapaprojeto = ".$objTbResponsavelEtapaProjeto->Get('idresponsaveletapaprojeto').";";
 
     if(!$dtLink->Exec($dsSql)){
       $arrMsg = $dtLink->getMessage();
@@ -142,28 +142,28 @@ class TbResponsavel{
 
   /**
    * Busca os dados da tabela pela condição da chave primaria
-   * @param $idResponsavel -> Chave a ser buscada
-   * @return TbResponsavel
+   * @param $idResponsavelEtapaProjeto -> Chave a ser buscada
+   * @return TbResponsavelEtapaProjeto
    **/
-  public static function LoadByIdResponsavel($idResponsavel){
+  public static function LoadByIdResponsavelEtapaProjeto($idResponsavelEtapaProjeto){
     $dtblink = new DtbCliente();
     $fmt = new Format();
-    $objTbResponsavel = new TbResponsavel();
+    $objTbResponsavelEtapaProjeto = new TbResponsavelEtapaProjeto();
 
     $dsSql = "SELECT
                 rp.*
               FROM
                 shtreinamento.tbresponsavel rp
               WHERE
-                rp.idresponsavel = ".$idResponsavel;
+                rp.idresponsaveletapaprojeto = ".$idResponsavelEtapaProjeto;
 
     if(!$dtblink->Query($dsSql)){
       return $fmt->RemoveQuebraLinha($dtblink->getMessage()["dsMsg"]."<br>");
     }
     else{
       $resSet = $dtblink->FetchArray();
-      $objTbResponsavel = $objTbResponsavel->LoadObject($resSet);
-      return $objTbResponsavel;
+      $objTbResponsavelEtapaProjeto = $objTbResponsavelEtapaProjeto->LoadObject($resSet);
+      return $objTbResponsavelEtapaProjeto;
     } 
   }       
     
@@ -171,12 +171,12 @@ class TbResponsavel{
    * Busca os dados da tabela com parâmetros de condição e ordenação
    * @param $strCondicao -> Condição da pesquisa
    * @param $strOrdenacao -> Ordenação da pesquisa
-   * @return TbResponsavel[]
+   * @return TbResponsavelEtapaProjeto[]
    **/
 
   public static function ListByCondicao($strCondicao, $strOrdenacao){
     $dtblink = new DtbCliente();
-    $objTbResponsavel = new TbResponsavel();
+    $objTbResponsavelEtapaProjeto = new TbResponsavelEtapaProjeto();
     $fmt = new Format();
 
     $dsSql = "SELECT
@@ -198,9 +198,9 @@ class TbResponsavel{
     }
     else{
       while($resSet = $dtblink->FetchArray()){
-        $aroTbResponsavel[] = $objTbResponsavel->LoadObject($resSet);
+        $aroTbResponsavelEtapaProjeto[] = $objTbResponsavelEtapaProjeto->LoadObject($resSet);
       }
-      return $aroTbResponsavel;
+      return $aroTbResponsavelEtapaProjeto;
     }
 
   }
@@ -213,7 +213,7 @@ class TbResponsavel{
     $dtblink = new DtbCliente();
     $fmt = new Format();
 
-    $dsSql = "SELECT NEXTVAL('shtreinamento.sqidresponsavel') AS nextid";
+    $dsSql = "SELECT NEXTVAL('shtreinamento.sqidresponsaveletapaprojeto') AS nextid";
 
     if(!$dtblink->Query($dsSql)){
       return $fmt->RemoveQuebraLinha($dtblink->getMessage()['dsMsg']."<br>");

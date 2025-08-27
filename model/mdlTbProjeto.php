@@ -27,6 +27,13 @@ class TbProjeto{
     $this->flstatus = "";
   }
   /**
+   * Método Set para carga do objeto
+   **/  
+  public function Set($prpTbProjeto, $vlTbProjeto){
+    $this->$prpTbProjeto = $vlTbProjeto;
+  }
+
+  /**
    * Método Get para carga do objeto
    **/  
   public function Get($prpTbProjeto){
@@ -58,7 +65,7 @@ class TbProjeto{
     */ 
 
    public function Insert($objTbProjeto){
-    $dtbLink = new DtbLink();
+    $dtbLink = new DtbCliente();
 
     $dsSql = "INSERT INTO
                 shtreinamento.tbprojeto(
@@ -71,10 +78,10 @@ class TbProjeto{
                 )
                 VALUES(
                 (SELECT NEXTVAL('shtreinamento.sqidprojeto'))
-                '".$objTbProjeto->Get("dstitulo")."';
-                '".$objTbProjeto->Get("dsdescricao")."';
-                '".$objTbProjeto->Get("dtinicio")."';
-                '".$objTbProjeto->Get("dtprevistatermino")."';
+                '".$objTbProjeto->Get("dstitulo")."',
+                '".$objTbProjeto->Get("dsdescricao")."',
+                '".$objTbProjeto->Get("dtinicio")."',
+                '".$objTbProjeto->Get("dtprevistatermino")."',
                 '".$objTbProjeto->Get("flstatus")."'
                 )";
     if(!$dtbLink->Exec($dsSql)){
@@ -92,18 +99,18 @@ class TbProjeto{
     */
 
     public function Update($objTbProjeto){
-      $dtbLink= new DtbLink();
+      $dtbLink= new DtbCliente();
 
       $dsSql = "UPDATE 
                   shtreinamento.tbproduto
                 SET
-                  dstitulo = '".$objTbProjeto->Get("dstitulo")."';
-                  dsdescricao = '".$objTbProjeto->Get("dsdescricao")."';
-                  dtinicio = '".$objTbProjeto->Get("dtinicio")."'; 
-                  dtprevistatermino = '".$objTbProjeto->Get("dtprevistatermino")."';
+                  dstitulo = '".$objTbProjeto->Get("dstitulo")."',
+                  dsdescricao = '".$objTbProjeto->Get("dsdescricao")."',
+                  dtinicio = '".$objTbProjeto->Get("dtinicio")."',
+                  dtprevistatermino = '".$objTbProjeto->Get("dtprevistatermino")."',
                   flstatus = '".$objTbProjeto->Get("flstatus")."' 
                 WHERE
-                  idprojeto = ".$objTbProjeto->Get("idprojeto").";";
+                  idprojeto = ".$objTbProjeto->Get("idprojeto").",";
       if(!$dtbLink->Exec($dsSql)){
         $arrMsg = $dtbLink->getMessage();
       }else{
@@ -118,7 +125,7 @@ class TbProjeto{
      * @return string[]
      */
     public function Delete($objTbProjeto){
-      $dtbLink= new DtbLink();
+      $dtbLink= new DtbCliente();
       
       $dsSql = "DELETE FROM
                   shtreinamento.tbprojeto
@@ -142,8 +149,8 @@ class TbProjeto{
    * @return TbProjeto
    **/  
 
-  public function LoadByIdProjet($idProjeto){
-    $dtbLink= new DtbLink();
+  public function LoadByIdProjeto($idProjeto){
+    $dtbLink= new DtbCliente();
     $fmt = new Format();
     $objTbProjeto = new TbProjeto;
 
@@ -168,9 +175,8 @@ class TbProjeto{
    * @param $strOrdenacao -> Ordenação da pesquisa
    * @return TbProjeto[]
    **/
-
    public static function LoadByCondicao($strCondicao, $strOrdenacao){
-    $dtbLink= new DtbLink();
+    $dtbLink= new DtbCliente();
     $fmt = new Format();
     $objTbProjeto = new TbProjeto;  
 
@@ -179,9 +185,9 @@ class TbProjeto{
               FROM    
                 shtreinamento.tbprojeto pj
               WHERE
-                  1 = 1";
+                  1 = 1 ";
     if($strCondicao != ""){
-      $dsSql.=$strCondicao;
+      $dsSql .= $strCondicao;
     }
     if($strOrdenacao != ""){
       $dsSql.=" ORDER BY ".$strOrdenacao;
@@ -193,7 +199,7 @@ class TbProjeto{
       while($resSet = $dtbLink->FetchArray()){
         $aroTbProjeto = $objTbProjeto->LoadObject($resSet);
       }
-        return $aroTbProjeto;
+      return $aroTbProjeto;
     }
   }
 
@@ -202,7 +208,7 @@ class TbProjeto{
    * @return int
    */
   public static function GetNextId(){
-    $dtbLink = new DtbLink();
+    $dtbLink = new DtbCliente();
     $fmt = new Format();
 
     $dsSql = "SELECT NEXTVAL('shtreinamento.sqidprojeto') AS nextid";
