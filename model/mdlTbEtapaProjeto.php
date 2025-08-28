@@ -112,7 +112,7 @@ class TbEtapaProjeto{
               flstatus = '".$objTbProjeto->Get("flstatus")."',
               idresponsaveletapaprojeto = '".$objTbProjeto->Get("idresponsaveletapaprojeto")."',
             WHERE 
-              idetapaprojeto = ".$objTbEtapaProjeto->Get("idetapaprojeto").";";
+              idetapaprojeto = ".$objTbEtapaProjeto->Get("idetapaprojeto").",";
     if(!$drblink->Exec($dsSql)){
       $arrMsg = $dtblink->getMessage();
     } else{
