@@ -149,7 +149,7 @@ class TbProjeto{
    * @return TbProjeto
    **/  
 
-  public function LoadByIdProjeto($idProjeto){
+  public static function LoadByIdProjeto($idProjeto){
     $dtbLink= new DtbCliente();
     $fmt = new Format();
     $objTbProjeto = new TbProjeto;
@@ -175,7 +175,7 @@ class TbProjeto{
    * @param $strOrdenacao -> Ordenação da pesquisa
    * @return TbProjeto[]
    **/
-   public static function LoadByCondicao($strCondicao, $strOrdenacao){
+   public static function ListByCondicao($strCondicao, $strOrdenacao){
     $dtbLink= new DtbCliente();
     $fmt = new Format();
     $objTbProjeto = new TbProjeto;  
@@ -185,19 +185,20 @@ class TbProjeto{
               FROM    
                 shtreinamento.tbprojeto pj
               WHERE
-                  1 = 1 ";
+                1 = 1 ";
     if($strCondicao != ""){
       $dsSql .= $strCondicao;
     }
     if($strOrdenacao != ""){
       $dsSql.=" ORDER BY ".$strOrdenacao;
-    }  
+    } 
+
     if(!$dtbLink->Query($dsSql)){
       return $fmt->RemoveQuebraLinha($dtbLink->getMessage()["dsMsg"]."<br>");
     }            
     else{
       while($resSet = $dtbLink->FetchArray()){
-        $aroTbProjeto = $objTbProjeto->LoadObject($resSet);
+        $aroTbProjeto[] = $objTbProjeto->LoadObject($resSet);
       }
       return $aroTbProjeto;
     }
