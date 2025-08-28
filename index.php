@@ -96,9 +96,9 @@
             text: "Janelas",
             items: [
               {
-                text: "Janela de Teste",
+                text: "Consulta de Projetos",
                 select: function() {
-                  OpenWindow(false, "ConsultaTeste", "controller/ctrTeste.php?action=winConsulta", "Janela de Teste")
+                  OpenWindow(false, "ConsultaProjeto", "controller/ctrProjeto.php?action=winConsulta", "Consulta de Projetos")
                 }
               }
             ]
@@ -114,6 +114,7 @@
 
   <div id="DivWindowArea"
     style="width: 100%; height: calc(100% - 25px); padding: 3px; background-repeat: no-repeat; background-position: bottom right; background-size: 45%; background-position-x: 99% !important; background-position-y: 98% !important;">
+      
   </div>
 
   <div id="popNotificacao"></div>
