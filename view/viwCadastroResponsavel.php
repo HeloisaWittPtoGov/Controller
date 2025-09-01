@@ -3,20 +3,21 @@
 ?>
 
 <script>
-//-----------------------------------------------------------------------------------------------------------------------------//
+$(function (){
+  //-----------------------------------------------------------------------------------------------------------------------------//
     //Instanciando os Campos da Tela de Cadastro
     //-----------------------------------------------------------------------------------------------------------------------------//
-//-----------------------------------------------------------------------------------------------------------------------------//
+  //-----------------------------------------------------------------------------------------------------------------------------//
 
-//-----------------------------------------------------------------------------------------------------------------------------//
+  //-----------------------------------------------------------------------------------------------------------------------------//
     //-----------------------------------------------------------------------------------------------------------------------------//
     //Barra de ações
-    //-----------------------------------------------------------------------------------------------------------------------------//
+  //-----------------------------------------------------------------------------------------------------------------------------//
 
     $("#frmCadastroResponsavel #BarAcoes").kendoToolBar({
-      items: [
+       items: [
         {
-          type: "spacer";
+          type: "spacer"
         },
         {
           type: "buttonGroup",
@@ -26,7 +27,7 @@
               spriteCssClass: "k-pg-icon k-i-l1-c5",
               text: "Gravar",
               group: "actions",
-              attributes{
+              attributes: {
                 "tabindex": "10"
               },
               click: function(){
@@ -53,7 +54,7 @@
               text: "Excluir",
               group: "actions",
               enable: false,
-              attributes{
+              attributes:{
                 "tabindex": "11",
               },
               click: function(){
@@ -84,7 +85,7 @@
             {
               id: "BtnLimpar",
               spriteCssClass: "k-pg-icon k-i-l1-c6",
-              text "Limpar",
+              text: "Limpar",
               group: "actions",
               attributes:{
                 "tabindex": "12",
@@ -110,15 +111,16 @@
           ],
         },
       ]
-    }),
-//-----------------------------------------------------------------------------------------------------------------------------//
+    });
+      //-----------------------------------------------------------------------------------------------------------------------------//
+  
+    if($("#frmCadastroResponsavel #idResponsavelEtapaProjeto").val() != ''){
+      $("#frmCadastroResponsavel #BarAcoes").data("kendoToolBar").enable("BtnExlcuir", true);
+    }
 
-  if($("#frmCadastroResponsavel #idResponsavelEtapaProjeto").val() != ''){
-    $("#frmCadastroResponsavel #BarAcoes").data("kendoToolBar").enable("BtnExlcuir", true);
-  }
-
-  //Ação para centralizar janela
-  $("#WinCadastroResponsavel").data("kendoWindow").center().open()
+    //Ação para centralizar janela
+    $("#WinCadastroResponsavel").data("kendoWindow").center().open()
+})    
 
 
 </script>
@@ -135,21 +137,25 @@
         </td>
       </tr>
     </table width="100%" border="0" cellspacing="2" cellpadding="0">
-      <tr>
-        <td style="width: 120px; text-align: right;">
+      <table>
+        <tr>
+          <tr>
+        <td style="width: 118px; text-align: right;">
             Nome:
         </td>
-         <td>
-          <input type="text" name="nmResponsavel" id="nmResponsavel" class="k-textbox" style="width: 600px;" value="'<?php  echo $objTbResponsavelEtapaProjeto->Get('nmresponsavel')?>">
+        <td>
+          <input type="text" name="nmResponsavel" id="nmResponsavel" class="k-textbox" style="width: 600px;" value="<?php  echo $objTbResponsavelEtapaProjeto->Get('nmresponsavel')?>">
         </td>
       </tr>
+        </tr>
+      </table>
     <table width="100%" border="0" cellspacing="2" cellpadding="0">
       <tr>
         <td style="width: 120px; text-align: right;">
           Setor:
         </td>
         <td>
-          <input type="text" name="dsSetor" id="dsSetor" class="k-textbox" style="width: 600px;" value="'<?php  echo $objTbResponsavelEtapaProjeto->Get('dsSetor')?>">
+          <input type="text" name="dsSetor" id="dsSetor" class="k-textbox" style="width: 600px;" value="<?php  echo $objTbResponsavelEtapaProjeto->Get('dsSetor')?>">
         </td>
       </tr>
     </table>
@@ -159,17 +165,17 @@
           Função:
         </td>
         <td>
-          <input type="text" name="dsFuncao" id="dsFuncao" class="k-textbox" style="width: 600px;" value="'<?php  echo $objTbResponsavelEtapaProjeto->Get('dsFuncao')?>">
+          <input type="text" name="dsFuncao" id="dsFuncao" class="k-textbox" style="width: 600px;" value="<?php  echo $objTbResponsavelEtapaProjeto->Get('dsFuncao')?>">
         </td>
       </tr>
     </table>
     <table>
       <tr>
-        <td style="width: 120px; text-align: right;">
+        <td style="width: 117px; text-align: right;">
           E-mail:
         </td>
         <td>
-           <input type="text" name="dsEmail" id="dsEmail" class="k-textbox" style="width: 600px;" value="'<?php  echo $objTbResponsavelEtapaProjeto->Get('dsEmail')?>">
+           <input type="text" name="dsEmail" id="dsEmail" class="k-textbox" style="width: 600px;" value="<?php  echo $objTbResponsavelEtapaProjeto->Get('dsEmail')?>">
         </td>
       </tr>
     </table>

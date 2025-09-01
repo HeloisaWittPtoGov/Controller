@@ -178,7 +178,7 @@ class TbEtapaProjeto{
    * @param $strOrdenacao -> Ordenação da pesquisa
    * @return TbEtapaProjeto[]
    **/
-  public function LoadByCondicao($strCondicao, $strOrdenacao){
+  public static function ListByCondicao($strCondicao, $strOrdenacao){
     $dtbLink= new DtbCliente();
     $fmt = new Format();
     $objTbEtapaProjeto = new TbEtapaProjeto;  

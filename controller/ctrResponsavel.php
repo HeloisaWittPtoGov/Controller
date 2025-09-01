@@ -11,12 +11,16 @@ $objTbResponsavelEtapaProjeto = new TbResponsavelEtapaProjeto();
 $objMsg = new Message();
 $fmt = new Format();
 
+if (isset($_GET['action']) && $_GET['action'] == 'winConsulta') {
+  require_once '../view/viwConsultaResponsavel.php';
+}
+
 if(isset($_GET['action']) && $_GET['action'] == 'incluir'){
   require_once '../view/viwCadastroResponsavel.php';
 }
 
 if(isset($_GET['action']) && $_GET['action'] == 'editar'){
-  $objTbResponsavelEtapaProjeto = TbResponsavelEtapaProjeto::LoadByIdResponsavel($_GET['idresponsaveletapaprojeto']);
+  $objTbResponsavelEtapaProjeto = TbResponsavelEtapaProjeto::LoadByIdResponsavelEtapaProjeto($_GET['idresponsaveletapaprojeto']);
   require_once '../view/viwCadastroResponsavel.php';
 }
 
@@ -30,22 +34,22 @@ if(isset($_GET['action']) && $_GET ['action'] == 'ListResponsavel'){
     $arrLinhas = [];
     $arrTempor = [];
 
-    foreach($aroTbResponsavelEtapaProjeto as $objTbResponsavelEtapaProjeto){
+    foreach($aroTbResponsavel as $objTbResponsavelEtapaProjeto){
       $arrTempor["idresponsaveletapaprojeto"] = utf8_encode($objTbResponsavelEtapaProjeto->Get("idresponsaveletapaprojeto"));
-      $arrTempor["nmeresponsavel"] = utf8_encode($objTbResponsavelEtapaProjeto->Get("nmresponsavel"));
+      $arrTempor["nmresponsavel"] = utf8_encode($objTbResponsavelEtapaProjeto->Get("nmresponsavel"));
       $arrTempor["dssetor"] = utf8_encode($objTbResponsavelEtapaProjeto->Get("dssetor"));
       $arrTempor["dsfuncao"] = utf8_encode($objTbResponsavelEtapaProjeto->Get("dsfuncao"));
       $arrTempor["dsemail"] = utf8_encode($objTbResponsavelEtapaProjeto->Get("dsemail"));
       array_push($arrLinhas, $arrTempor);
     }
 
-    echo '{"jsnResponsavelEtapaProjeto":'.json_encode($arrLinhas).'}';
+    echo '{"jsnResponsavel":'.json_encode($arrLinhas).'}';
   }
-  else if(!is_array($aroTbREsponsavelEtapaProjeto) && trim($aroTbResponsavelEtapaProjeto) != ""){
+  else if(!is_array($aroTbResponsavel) && trim($aroTbResponsavel) != ""){
     echo '{"error":"'.utf8_decode($aroTbResponsavelEtapaProjeto).'"}';
   }
   else{
-    echo '{"jsnResponsavelEtapaProjeto": null}'; 
+    echo '{"jsnResponsavel": null}'; 
   }
 }
 if(isset($_GET['action']) && $_GET['action'] == "gravar"){
@@ -61,7 +65,7 @@ if(isset($_GET['action']) && $_GET['action'] == "gravar"){
   if($objTbResponsavelEtapaProjeto->Get('nmresponsavel') ==  ""){
     $strMessage .= "&raquo; O campo <strong>Nome</strong> e de preeenchimento obrigatorio.<br>";
   }
-  if($objTbResponsavelEtapaProjeto->Get("ssetor") == ""){
+  if($objTbResponsavelEtapaProjeto->Get("dssetor") == ""){
     $strMessage .= "&raquo; O campo <strong>Setor/strong> e de preenchimento obrigatorio.<br>";
   }
   if($objTbResponsavelEtapaProjeto->Get("dsfuncao") == ""){
@@ -75,7 +79,7 @@ if(isset($_GET['action']) && $_GET['action'] == "gravar"){
     $objMsg->Alert('dlg', $strMessage);
   }
   else{
-    if($objTbResponsavelEtapaProjeto->Get('idetapaprojeto') != ""){ //Update
+    if($objTbResponsavelEtapaProjeto->Get('idresponsaveletapaprojeto') != ""){ //Update
       $arrResult = $objTbResponsavelEtapaProjeto->Update($objTbResponsavelEtapaProjeto);
 
       if($arrResult["dsMsg"] == 'ok'){

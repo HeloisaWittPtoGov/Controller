@@ -41,7 +41,7 @@
           widthPreview: "70",
           positionPreview: "2",
           indiceTabPreview: "tabDadosGerais",
-          togetherPreview:"idetapaprojeto,"
+          togetherPreview:"idetapaprojeto"
       },
       {
           name: "nmetapa",
@@ -311,6 +311,12 @@
       $("#frmConsultaEtapaProjeto #GrdConsultaEtapaProjeto").on("dbclick", " tbody> tr", function () {
       })
       //------------------------------------------------------------------------------------------------------//
+
+    //------------------------------------------------------------------------------------------------------//
+    // CriaTela de visualização de item do grid na consulta e faz outrs ajustes
+    //------------------------------------------------------------------------------------------------------//
+    createScreenPreview(arrDataSource, "ConsultaEtapaProjeto")
+    //------------------------------------------------------------------------------------------------------//
   })
 
 </script>
@@ -351,8 +357,8 @@
           style="height: auto"></div>
       </div>
 
-      <div id="splFooter">
-        <div id="buttonConsultaEtapaProjeto">
+      <div id="splfooter">
+        <div id="bottonConsultaEtapaProjeto">
           <div id="tabStripConsultaEtapaProjeto">
             <ul>
               <li id="tabDadosGerais" class="k-state-active">Detalhes</li>

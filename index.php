@@ -100,7 +100,25 @@
                 select: function() {
                   OpenWindow(false, "ConsultaProjeto", "controller/ctrProjeto.php?action=winConsulta", "Consulta de Projetos")
                 }
-              }
+              },
+              {
+                text: "Consulta de Etapas",
+                select: function() {
+                  OpenWindow(false, "ConsultaEtapaProjeto", "controller/ctrEtapaProjeto.php?action=winConsulta", "Consulta de Etapas")
+                }
+              },
+               {
+                text: "Consulta de Responsáveis",
+                select: function() {
+                  OpenWindow(false, "ConsultaResposanvel", "controller/ctrResponsavel.php?action=winConsulta", "Consulta de Responsáveis")
+                }
+              },
+               {
+                text: "Consulta de Entregas",
+                select: function() {
+                  OpenWindow(false, "ConsultaEntrega", "controller/ctrEntrega.php?action=winConsulta", "Consulta de Entregas")
+                }
+              },
             ]
           }
         ]

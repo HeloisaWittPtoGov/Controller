@@ -7,7 +7,7 @@
 
     var arrDataSource = [
       {
-        name: "idresponsaveletapaprojeto",
+        name: "identrega",
         type: "integer",
         label: "ID",
         visibleFilter: "true",
@@ -16,8 +16,8 @@
         orderGrid: "1",
         widthGrid: "70",
         hiddenGrid: "false",
-        headerAttributesGrid: "text-aling: center",
-        attibutesGrid: "text-aling: center",
+        headerAttributesGrid: "text-align: center",
+        attibutesGrid: "text-align: center",
 
         showPreview: "true",
         widthPreview: "70",
@@ -25,95 +25,95 @@
         indiceTabPreview: "tabDadosGerais",
       },
       {
-        name: "nmresponsavel",
+        name: "dsdescricao",
         type: "string",
-        label: "Nome",
+        label: "Descricao",
         visibleFilter: "true",
         orderFilter: "1",
 
         orderGrid: "2",
         widthGrid: "",
         hiddenGrid: "false",
-        headerAttributesGrid: "text-aling: center",
-        attibutesGrid: "text-aling: center",
+        headerAttributesGrid: "text-align: center",
+        attibutesGrid: "text-align: center",
 
         showPreview: "true",
-        widthPreview: "600",
+        widthPreview: "",
         positionPreview: "2",
         indiceTabPreview: "tabDadosGerais",
       },
       {
-        name: "dssetor",
+        name: "dsentrega",
         type: "string",
-        label: "Setor",
+        label: "Entrega",
         visibleFilter: "true",
         orderFilter: "3",
 
         orderGrid: "3",
         widthGrid: "",
         hiddenGrid: "false",
-        headerAttributesGrid: "text-aling: center",
-        attibutesGrid: "text-aling: center",
+        headerAttributesGrid: "text-align: center",
+        attibutesGrid: "text-align: center",
 
         showPreview: "true",
-        widthPreview: "600",
+        widthPreview: "",
         positionPreview: "3",
         indiceTabPreview: "tabDadosGerais",
       },
       {
-        name: "dsfuncao",
+        name: "dsobrservacao",
         type: "string",
-        label: "Função",
+        label: "Observação",
         visibleFilter: "true",
         orderFilter: "4",
 
         orderGrid: "4",
         widthGrid: "",
         hiddenGrid: "false",
-        headerAttributesGrid: "text-aling: center",
-        attibutesGrid: "text-aling: center",
+        headerAttributesGrid: "text-align: center",
+        attibutesGrid: "text-align: center",
 
         showPreview: "true",
-        widthPreview: "600",
+        widthPreview: "",
         positionPreview: "4",
         indiceTabPreview: "tabDadosGerais",
       },
       {
-        name: "dsemail",
-        type: "string",
-        label: "E-mail",
+        name: "idetapaprojeto",
+        type: "integer",
+        label: "ID Etapa Projeto",
         visibleFilter: "true",
         orderFilter: "5",
 
         orderGrid: "5",
         widthGrid: "",
         hiddenGrid: "false",
-        headerAttributesGrid: "text-aling: center",
-        attibutesGrid: "text-aling: center",
+        headerAttributesGrid: "text-align: center",
+        attibutesGrid: "text-align: center",
 
         showPreview: "true",
-        widthPreview: "600",
+        widthPreview: "",
         positionPreview: "5",
         indiceTabPreview: "tabDadosGerais",
       }
     ]
-
+     
     //------------------------------------------------------------------------------------------------------//
     // Configura tela para usar splitter
     //------------------------------------------------------------------------------------------------------//
-    arrDataSource = LoadConfigurationQuery(arrDataSource, "ConsultaResponsavel")
+    arrDataSource = LoadConfigurationQuery(arrDataSource, "ConsultaEntrega")
     //------------------------------------------------------------------------------------------------------//
 
     //------------------------------------------------------------------------------------------------------//
     // Instanciando os campos combo da consulta
     //------------------------------------------------------------------------------------------------------//
-    createPgFilter(arrDataSource, "ConsultaResponsavel")
+    createPgFilter(arrDataSource, "ConsultaEntrega")
     //------------------------------------------------------------------------------------------------------//
     
     //------------------------------------------------------------------------------------------------------//
     // Area de botões de ação
     //------------------------------------------------------------------------------------------------------//
-    $("#frmConsultaResponsavel #BarAcoes").kendoToolBar({
+       $("#frmConsultaEntrega #BarAcoes").kendoToolBar({
       items:[
         {
           type: "spacer"
@@ -130,7 +130,7 @@
                 "tabindex": "30"
               },
               click: function(){
-                OpenWindow(true, "CadastroResponsavel", "controller/ctrResponsavel.php?action=incluir");
+                OpenWindow(true, "CadastroEntrega", "controller/ctrEntrega.php?action=incluir");
               }
             },
             {
@@ -143,9 +143,9 @@
                 "tabindex": "31"
               },
               click: function(){
-                var GdrConsultaResponsavel = $("#frmConsultaResponsavel #GdrConsultaResponsavel").data("kendoGrid");
-                var RstResponsavel = GdrConsultaResponsavel.dataItem(GdrConsultaResponsavel.select());
-                OpenWindow(true, "CadastroResponsavel", "controller/ctrResponsavel.php?action=editar&idResponsavelEtapaProjeto="+RstResponsavel.idresponsaveletapaprojeto)
+                var GrdConsultaEntrega = $("#frmConsultaEntrega #GrdConsultaEntrega").data("kendoGrid");
+                var RstEntrega = GrdConsultaEntrega.dataItem(GrdConsultaEntrega.select());
+                OpenWindow(true, "CadastroEntrega", "controller/ctrEntrega.php?action=editar&identrega="+RstEntrega.identrega)
               }
             },
             {
@@ -157,7 +157,7 @@
                 "tabindex":"32"
               },
               click: function(){
-                $("#WinConsultaResponsavel").data("kendoWindow").close();
+                $("#WinConsultaEntrega").data("kendoWindow").close();
               }
             },
           ]
@@ -166,40 +166,40 @@
     })
     //------------------------------------------------------------------------------------------------------//
 
-    //-----------------------------------------------------------------------------------------------------//
+     //-----------------------------------------------------------------------------------------------------//
       // Filtro extra da consulta
       //-----------------------------------------------------------------------------------------------------//
       function getExtraFilter(){
         //quando usa splitter
-        var arrFields = LoadFilterSplitter('ConsultaResponsavel', arrDataSource)
+        var arrFields = LoadFilterSplitter('ConsultaEntrega', arrDataSource)
 
         return arrFields;
       }
       //-----------------------------------------------------------------------------------------------------//
-      
-    //------------------------------------------------------------------------------------------------------//
+
+     //------------------------------------------------------------------------------------------------------//
       // Instanciando dataSource da consulta
       //------------------------------------------------------------------------------------------------------//  
-      var DtsConsultaResponsavel = new kendo.data.DataSource({
+      var DtsConsultaEntrega = new kendo.data.DataSource({
         pageSize: 100,
         serverPaging: true,
         serverFiltering: true,
         serverSorting: true,
         transport: {
-          read{
-            url: "controller/ctrResponsavel.php",
+          read:{
+            url: "controller/ctrEntrega.php",
             type: "GET",
             dataType: "JSON",
             data: function(){
               return{
-                action: 'ListResponsavel',
+                action: 'ListEntrega',
                 filters: getExtraFilter(),
               }
             }
           }
         },
         schema:{
-          data: "jsnResponsavel",
+          data: "jsnEntrega",
           model:{
             fields: getModelDataSource(arrDataSource)
           },
@@ -209,34 +209,34 @@
           DlgError(e.error);
         }
       })
-      //------------------------------------------------------------------------------------------------------//
-
+      //------------------------------------------------------------------------------------------------------// 
+      
       //------------------------------------------------------------------------------------------------------//
       // Instanciando o Botão de Consulta
       //------------------------------------------------------------------------------------------------------//
-        $("#frmConsultaResponsavel #BtnPesquisar").kendoButton({
+        $("#frmConsultaEntrega #BtnPesquisar").kendoButton({
           spriteCssClass: "k-pg-icon k-i-l1-c2",
           click: function(e){
-            mountFilteredScreen('filterDefault', e, 'ConsultaResponsavel', arrDataSource, DtsConsultaResponsavel, getExtraFilter());
+            mountFilteredScreen('filterDefault', e, 'ConsultaEntrega', arrDataSource, DtsConsultaEntrega, getExtraFilter());
 
-            $("#frmConsultaResponsavel #BarAcoes").data("kendoToolBar").enable("#BtnEditar", false);
+            $("#frmConsultaEntrega #BarAcoes").data("kendoToolBar").enable("#BtnEditar", false);
           }
         })
       //------------------------------------------------------------------------------------------------------//
 
-      //------------------------------------------------------------------------------------------------------//
+     //------------------------------------------------------------------------------------------------------//
       // Instanciando grid da consulta
       //------------------------------------------------------------------------------------------------------//
-        $("#frmConsultaResponsavel #GrdConsultaResponsavel").kendoGrid({
-          pdf: SetPdfOptions("Listagem de Responsáveis"),
+        $("#frmConsultaEntrega #GrdConsultaEntrega").kendoGrid({
+          pdf: SetPdfOptions("Listagem de Entregas"),
           pdfExport: function(e) {
-            tituloPdfExport = 'Listagem de Responsáveis';
+            tituloPdfExport = 'Listagem de Entregas';
         },
-        dataSource: DtsConsultaResponsavel,
-        heigth: getHeightGridQuery("ConsultaResponsavel"),
+        dataSource: DtsConsultaEntrega,
+        height: getHeightGridQuery("ConsultaEntrega"),
         selectable: "row",
         resizable: true,
-        rorderable: true,
+        reorderable: true,
         navigatable: true,
         columnMenu: true,
         filterable: true,
@@ -245,41 +245,48 @@
           allowUnsort: true,
         },
         sort: function(){
-          $("#frmConsultaResponsavel #BarAcoes").data("kendoToolBar").enable("#BtnEditar", false);
+          $("#frmConsultaEntrega #BarAcoes").data("kendoToolBar").enable("#BtnEditar", false);
         },
         pageable: {
           pageSizes: [100, 300, 500, "all"],
-          numeirc: false,
+          numeric: false,
           input: true
         },
         columns: getColumnsQuery(arrDataSource),
         columnShow: function (e) {
-          setWidthOnShowColumnGrid(e, 'ConsultaResponsavel');
+          setWidthOnShowColumnGrid(e, 'ConsultaEntrega');
         },
         columnHide: function (e) {
-          setWidthOnHideColumnGrid(e, 'ConsultaResponsavel');
+          setWidthOnHideColumnGrid(e, 'ConsultaEntrega');
         },
         dataBound: function (e) {
-          LoadGridExportActions('frmConsultaResponsavel', 'GrdConsultaResponsavel', <?= ($frmResult === '') ?>);
+          LoadGridExportActions('frmConsultaEntrega', 'GrdConsultaEntrega', <?= ($frmResult === '') ?>);
         },
         filter: function (e) {
-          mountFilteredScreen('filterColumn', e, 'ConsultaResponsavel', arrDataSource, DtsConsultaResponsavel, getExtraFilter())
+          mountFilteredScreen('filterColumn', e, 'ConsultaEntrega', arrDataSource, DtsConsultaEntrega, getExtraFilter())
         },
         change: function () {
-          $("#frmConsultaResponsavel #BarAcoes").data("kendoToolBar").enable("#BtnEditar")
+          $("#frmConsultaEntrega #BarAcoes").data("kendoToolBar").enable("#BtnEditar")
         }
       })
 
-      $("#frmConsultaResponsavel #GrdConsultaResponsavel").on("dbclick", " tbody> tr", function () {
+      $("#frmConsultaEntrega #GrdConsultaEntrega").on("dblclick", " tbody> tr", function () {
       })
-      //------------------------------------------------------------------------------------------------------//
+      //------------------------------------------------------------------------------------------------------// 
+
+    //------------------------------------------------------------------------------------------------------//
+    // CriaTela de visualização de item do grid na consulta e faz outrs ajustes
+    //------------------------------------------------------------------------------------------------------//
+    createScreenPreview(arrDataSource, "ConsultaEntrega")
+    //------------------------------------------------------------------------------------------------------//
+
+
 
   })
-
 </script>
 
-<div class="k=form">
-  <form id="frmConsultaResponsvel">
+<div class="k-form">
+  <form id="frmConsultaEntrega">
     <div id="splConsulta">
       <div id="splHeader">
         <div class="k-bg-blue screen-filter-content">
@@ -289,7 +296,7 @@
                 Filtros(s):
               </td>
               <td>
-                <div id="fltConsultaResponsavel" style="width: auto; "></div>
+                <div id="fltConsultaEntrega" style="width: auto; "></div>
               </td>
 
               <td style="vertical-align: bottom;padding-bottom: 5px;">
@@ -310,19 +317,20 @@
       </div>
 
       <div id="splMiddle">
-       <div id="GdrConsultaResponsavel" data-use-state-screen ="true" data-get-state-screen = "false" style="height: auto"></div>
+        <div id="GrdConsultaEntrega" data-use-state-screen ="true" data-get-state-screen = "false" style="height: auto"></div>
       </div>
 
-      <div id="splFotter">
-        <div id="buttonConsultaResponsavel">
-          <div id="tabStripConsultaResponsal">
+      <div id="splFooter">
+        <div id="bottonConsultaEntrega">
+          <div id="tabStripConsultaEntrega">
             <ul>
               <li id="tabDadosGerais" class="k-state-active">Detalhes</li>
             </ul>
-            <div id="tabDadosGeraisVisualizacaoConsultaResponsavel"></div>
+            <div id="tabDadosGeraisVisualizacaoConsultaEntrega"></div>
           </div>
-        </div>
       </div>
+
     </div>
   </form>
+
 </div>

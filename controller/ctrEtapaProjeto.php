@@ -11,6 +11,9 @@ $objTbEtapaProjeto = new TbEtapaProjeto();
 $objMsg = new Message();
 $fmt = new Format();
 
+if (isset($_GET['action']) && $_GET['action'] == 'winConsulta') {
+  require_once '../view/viwConsultaEtapaProjeto.php';
+}
 
 if(isset($_GET['action']) && $_GET['action'] == 'incluir'){
   require_once '../view/viwCadastroEtapaProjeto.php';
@@ -118,6 +121,4 @@ if(isset($_GET['action']) && $_GET['action'] == 'excluir'){
   }
 }
 
-if (isset($_GET['action']) && $_GET['action'] == 'etapa') {
-  require_once '../view/viwConsultaEtapaProjeto.php';
-}
+

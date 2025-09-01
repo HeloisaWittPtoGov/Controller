@@ -145,7 +145,7 @@ class TbEntrega{
    * @return TbEntrega
    **/  
 
-  public function LoadByIdEntrega($idEntrega){
+  public static function LoadByIdEntrega($idEntrega){
     $dtb = new DateTime();
     $fmt = new Format();
     $objTbEntrega = new TbEntrega();
@@ -172,7 +172,7 @@ class TbEntrega{
    * @return TbEntrega[]
    **/
 
-    public function LoadbyCondicao($strCondicao, $strOrdenacao){
+    public static function ListByCondicao($strCondicao, $strOrdenacao){
       $dtblink = new DtbCliente();
       $fmt = new Format();
       $objTbEntrega = new TbEntrega();
