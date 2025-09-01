@@ -7,7 +7,7 @@
     //Instanciando os Campos da Tela de Cadastro
     //-----------------------------------------------------------------------------------------------------------------------------//
 
-    $("#frmCadastroEtapaProjeto #dtPrevistaInicio").kendoDataPicker({
+    $("#frmCadastroEtapaProjeto #dtPrevistaInicio").kendoDatePicker({
       format: "dd/MM/yyyy";
     })
 
@@ -15,7 +15,7 @@
       format: "00/00/0000";
     })
 
-    $("#frmCadastroEtapaProjeto #dtPrevistaTermino").kendoDataPicker({
+    $("#frmCadastroEtapaProjeto #dtPrevistaTermino").kendoDatePicker({
       format: "dd/MM/yyyy";
     })
 
@@ -79,7 +79,7 @@
                   if(btn == 'sim'){
                     $.post(
                       'controller/ctrEtapaProjeto.php?action=excluir&',
-                      $("#frmCadastroEtapaProjeto").serializa(),
+                      $("#frmCadastroEtapaProjeto").serialize(),
                       function(response){
                         Message(response.flDisplay, response.flTipo, response.dsMsg)
                         if(response.flTipo == "S"){

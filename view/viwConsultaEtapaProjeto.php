@@ -311,16 +311,12 @@
       $("#frmConsultaEtapaProjeto #GrdConsultaEtapaProjeto").on("dbclick", " tbody> tr", function () {
       })
       //------------------------------------------------------------------------------------------------------//
-
-      //Ação para centralizar janela
-    $("#WinCadastroEtapaProjeto").data("kendoWindow").center().open()
-
   })
 
 </script>
 
 <div class="k-form">
-  <form id="frmConsultaEtapaProjeto"></form>
+  <form id="frmConsultaEtapaProjeto">
     <div id="splConsulta">
       <div id="splHeader">
         <div class="k-bg-blue screen-filter-content">
@@ -351,7 +347,7 @@
       </div>
 
       <div id="splMiddle">
-        <div id="GrdConsultaEtapaProjeto" data-use-state-screen="true" data-get-state-scree="false"
+        <div id="GrdConsultaEtapaProjeto" data-use-state-screen="true" data-get-state-screen="false"
           style="height: auto"></div>
       </div>
 
@@ -366,5 +362,5 @@
         </div>
       </div>
     </div>
-
+  </form>
 </div>
