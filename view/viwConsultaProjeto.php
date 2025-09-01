@@ -141,12 +141,25 @@
           type: "buttonGroup",
           buttons: [
             {
+              id: "BtnEtapa",
+              spriteCssClass: "k-pg-icon k-i-l1-c1",
+              text: "Etapas",
+              group: "actions",
+              attributes: {
+                "tabindex": "30"
+              },
+              click: function () {
+                OpenWindow(true, "ConsultaEtapaProjeto", "controller/ctrEtapaProjeto.php?action=winEtapa");
+              }
+
+            },
+            {
               id: "BtnIncluir",
               spriteCssClass: "k-pg-icon k-i-l1-c1",
               text: "Incluir",
               group: "actions",
               attributes: {
-                "tabindex": "30"
+                "tabindex": "31"
               },
               click: function () {
                 OpenWindow(true, "CadastroProjeto", "controller/ctrProjeto.php?action=incluir");
@@ -154,12 +167,12 @@
             },
             {
               id: "BtnEditar",
-              spriteCssClass: "k-pg-icon k-i-l1-c1",
+              spriteCssClass: "k-pg-icon k-i-l1-c3",
               text: "Editar",
               group: "actions",
               enable: false,
               attributes: {
-                "tabindex": "31"
+                "tabindex": "32"
               },
               click: function () {
                 var GrdConsultaProjeto = $("#frmConsultaProjeto #GrdConsultaProjeto").data("kendoGrid");
@@ -173,7 +186,7 @@
               text: "Fechar",
               group: "actions",
               attributes: {
-                "tabindex": "32"
+                "tabindex": "33"
               },
               click: function() {
                 $("#WinConsultaProjeto").data("kendoWindow").close();
@@ -288,7 +301,8 @@
         mountFilteredScreen('filterColumn', e, 'ConsultaProjeto', arrDataSource, DtsConsultaProjeto, getExtraFilter())
       },
       change: function () {
-        $("#frmConsultaProduto #BarAcoes").data("kendoToolBar").enable("#BtnEditar")
+        $("#frmConsultaProjeto #BarAcoes").data("kendoToolBar").enable("#BtnEditar")
+
       }
     })
 

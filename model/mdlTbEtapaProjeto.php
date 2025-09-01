@@ -41,7 +41,7 @@ class TbEtapaProjeto{
   }
   /**
    * @param $resSet
-   * @return TbProjeto
+   * @return TbEtapaProjeto
    */
   public function LoadObject($resSet){
     $objTbEtapaProjeto = new TbEtapaProjeto();
@@ -151,7 +151,7 @@ class TbEtapaProjeto{
    * @param $idEtapaProjeto -> Chave a ser buscada
    * @return TbEtapaProjeto
    **/  
-  public function LoadByIdEtapaProjeto($idEtapaProjeto){
+  public static function LoadByIdEtapaProjeto($idEtapaProjeto){
     $dtblink = new DtbCliente();
     $fmt = new Format();
     $objTbEtapaProjeto = new TbEtapaProjeto();

@@ -77,7 +77,7 @@ class TbProjeto{
                   flstatus
                 )
                 VALUES(
-                (SELECT NEXTVAL('shtreinamento.sqidprojeto'))
+                (SELECT NEXTVAL('shtreinamento.sqidprojeto')),
                 '".$objTbProjeto->Get("dstitulo")."',
                 '".$objTbProjeto->Get("dsdescricao")."',
                 '".$objTbProjeto->Get("dtinicio")."',
@@ -102,7 +102,7 @@ class TbProjeto{
       $dtbLink= new DtbCliente();
 
       $dsSql = "UPDATE 
-                  shtreinamento.tbproduto
+                  shtreinamento.tbprojeto
                 SET
                   dstitulo = '".$objTbProjeto->Get("dstitulo")."',
                   dsdescricao = '".$objTbProjeto->Get("dsdescricao")."',
@@ -110,7 +110,7 @@ class TbProjeto{
                   dtprevistatermino = '".$objTbProjeto->Get("dtprevistatermino")."',
                   flstatus = '".$objTbProjeto->Get("flstatus")."' 
                 WHERE
-                  idprojeto = ".$objTbProjeto->Get("idprojeto").",";
+                  idprojeto = ".$objTbProjeto->Get("idprojeto").";";
       if(!$dtbLink->Exec($dsSql)){
         $arrMsg = $dtbLink->getMessage();
       }else{
