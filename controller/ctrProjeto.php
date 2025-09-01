@@ -11,24 +11,43 @@ $objTbProjeto = new TbProjeto();
 $objMsg = new Message();
 $fmt = new Format();
 
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------//
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------//
+//Ação de Abertura da Tela de Consulta
+//------------------------------------------------------------------------------------------------------------------------------------------------------//
+
 if (isset($_GET['action']) && $_GET['action'] == 'winConsulta') {
   require_once '../view/viwConsultaProjeto.php';
 }
+//------------------------------------------------------------------------------------------------------------------------------------------------------//
 
-if (isset($_GET['action']) && $_GET['action'] == 'winEtapa') {
-  require_once '../view/viwConsultaEtapaProjeto.php';
-}
+//------------------------------------------------------------------------------------------------------------------------------------------------------//
+//Ação de Inclusão de Registros
+//------------------------------------------------------------------------------------------------------------------------------------------------------//
 
 if(isset($_GET['action']) && $_GET['action'] == 'incluir'){
   require_once '../view/viwCadastroProjeto.php';
 }
+//------------------------------------------------------------------------------------------------------------------------------------------------------//
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------//
+//Ação de Edição de Registros
+//------------------------------------------------------------------------------------------------------------------------------------------------------//
 
 if(isset($_GET['action']) && $_GET['action'] == 'editar'){
   $objTbProjeto = TbProjeto::LoadByIdProjeto($_GET['idProjeto']);
   require_once '../view/viwCadastroProjeto.php';
 }
 
+//------------------------------------------------------------------------------------------------------------------------------------------------------//
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------//
+//Ação para consulta de Registros
+//------------------------------------------------------------------------------------------------------------------------------------------------------//
 if(isset($_GET['action']) && $_GET ['action'] == 'ListProjeto'){
+  //Verificando o Filtro
   $objFilter = new Filter($_GET);
   $strFiltro = $objFilter->GetWhere();
 
@@ -58,6 +77,11 @@ if(isset($_GET['action']) && $_GET ['action'] == 'ListProjeto'){
     echo '{"jsnProjeto": null}';
   }
 }
+//------------------------------------------------------------------------------------------------------------------------------------------------------//
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------//
+//Ação para gravação de registros
+//------------------------------------------------------------------------------------------------------------------------------------------------------//
 
 if(isset($_GET['action']) && $_GET['action'] == "gravar"){
   $objTbProjeto->Set('idprojeto',utf8_decode($_POST['idProjeto']));
@@ -67,24 +91,26 @@ if(isset($_GET['action']) && $_GET['action'] == "gravar"){
   $objTbProjeto->Set('dtprevistatermino', utf8_decode($fmt->data($_POST['dtPrevistaTermino'])));
   $objTbProjeto->Set('flstatus',utf8_decode($_POST['flStatus']));
 
+  //Efetuando as validações
   $strMessage = "";
   
-  if($objTbProjeto->Get('dstitulo') ==  ""){
+  if(empty($objTbProjeto->Get('dstitulo') ==  "")){
     $strMessage .= "&raquo; O campo <strong>Titulo</strong> e de preeenchimento obrigatorio.<br>";
   }
-  if($objTbProjeto->Get("dsdescricao") == ""){
+  if(empty($objTbProjeto->Get("dsdescricao") == "")){
     $strMessage .= "&raquo; O campo <strong>Descricao</strong> e de preenchimento obrigatorio.<br>";
   }
-  if($objTbProjeto->Get("dtinicio") == ""){
+  if(empty($objTbProjeto->Get("dtinicio") == ""))
     $strMessage .= "&raquo; O campo <strong>Data de Inicio</strong> e de preenchimento obrigatorio.<br>";
   }
-  if($objTbProjeto->Get("dtprevistatermino") == ""){
+  if(empty($objTbProjeto->Get("dtprevistatermino") == "")){
     $strMessage .= "&raquo; O campo <strong>Data Prevista de Termino</strong> e de preenchimento obrigatorio.<br>";
   }
-  if($objTbProjeto->Get("flstatus") == ""){
+  if(empty($objTbProjeto->Get("flstatus") == "")){
     $strMessage .= "&raquo; O campo <strong>Status</strong> e de preenchimento obrigatorio.<br>";
   }
-
+  
+  //Caso tenha encontrado erros abre a janela de alerta
   if($strMessage != ""){
     $objMsg->Alert('dlg', $strMessage);
   }
@@ -113,8 +139,13 @@ if(isset($_GET['action']) && $_GET['action'] == "gravar"){
       }
     }
   }
-}
 
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------//
+
+  //------------------------------------------------------------------------------------------------------------------------------------------------------//
+  //Ação para exclusão de registros
+  //------------------------------------------------------------------------------------------------------------------------------------------------------//
 if(isset($_GET['action']) && $_GET['action'] == 'excluir'){
   $objTbProjeto = TbProjeto::LoadByIdProjeto($_POST['idProjeto']);
   $arrResult = $objTbProjeto->Delete($objTbProjeto);
@@ -127,6 +158,7 @@ if(isset($_GET['action']) && $_GET['action'] == 'excluir'){
     $objMsg->LoadMessage($arrResult);
   }
 }
+ //------------------------------------------------------------------------------------------------------------------------------------------------------//
 
 
 

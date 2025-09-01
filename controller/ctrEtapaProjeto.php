@@ -11,18 +11,36 @@ $objTbEtapaProjeto = new TbEtapaProjeto();
 $objMsg = new Message();
 $fmt = new Format();
 
+//------------------------------------------------------------------------------------------------------------------------------------------------------//
+//Ação de Abertura da Tela de Consulta
+//------------------------------------------------------------------------------------------------------------------------------------------------------//
+
 if (isset($_GET['action']) && $_GET['action'] == 'winConsulta') {
   require_once '../view/viwConsultaEtapaProjeto.php';
 }
+//------------------------------------------------------------------------------------------------------------------------------------------------------//
 
+//------------------------------------------------------------------------------------------------------------------------------------------------------//
+//Ação de Inclusão de Registros
+//------------------------------------------------------------------------------------------------------------------------------------------------------//
 if(isset($_GET['action']) && $_GET['action'] == 'incluir'){
   require_once '../view/viwCadastroEtapaProjeto.php';
 }
+//------------------------------------------------------------------------------------------------------------------------------------------------------//
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------//
+//Ação de Edição de Registros
+//------------------------------------------------------------------------------------------------------------------------------------------------------//
 
 if(isset($_GET['action']) && $_GET['action'] == 'editar'){
   $objTbEtapaProjeto = TbEtapaProjeto::LoadByIdEtapaProjeto($_GET['idEtapaProjeto']);
   require_once '../view/viwCadastroEtapaProjeto.php';
 }
+//------------------------------------------------------------------------------------------------------------------------------------------------------//
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------//
+//Ação para consulta de Registros
+//------------------------------------------------------------------------------------------------------------------------------------------------------//
 
 if(isset($_GET['action']) && $_GET ['action'] == 'ListEtapaProjeto'){
   $objFilter = new Filter($_GET);
@@ -55,6 +73,12 @@ if(isset($_GET['action']) && $_GET ['action'] == 'ListEtapaProjeto'){
     echo '{"jsnEtapaProjeto": null}'; 
   }
 }
+  //------------------------------------------------------------------------------------------------------------------------------------------------------//
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------//
+//Ação para gravação de registros
+//------------------------------------------------------------------------------------------------------------------------------------------------------//
+
 if(isset($_GET['action']) && $_GET['action'] == "gravar"){
   $objTbEtapaProjeto->Set('idetapaprojeto',utf8_decode($_POST['idetapaprojeto']));
   $objTbEtapaProjeto->Set('idprojeto',utf8_decode($_POST['idProjeto']));
@@ -64,21 +88,22 @@ if(isset($_GET['action']) && $_GET['action'] == "gravar"){
   $objTbEtapaProjeto->Set('flstatus', utf8_decode($_POST['flstatus']));
   $objTbEtapaProjeto->Set('idresponsaveletapaprojeto',utf8_decode($_POST['idresponsaveletapaprojeto']));
 
+   //Efetuando as validações
   $strMessage = "";
   
-  if($objTbEtapaProjeto->Get('nmetapa') ==  ""){
+  if(empty($objTbEtapaProjeto->Get('nmetapa') ==  "")){
     $strMessage .= "&raquo; O campo <strong>Titulo</strong> e de preeenchimento obrigatorio.<br>";
   }
-  if($objTbEtapaProjeto->Get("dtprevistainicio") == ""){
+  if(empty($objTbEtapaProjeto->Get("dtprevistainicio") == "")){
     $strMessage .= "&raquo; O campo <strong>Data de Inicio</strong> e de preenchimento obrigatorio.<br>";
   }
-  if($objTbEtapaProjeto->Get("dtprevistatermino") == ""){
+  if(empty($objTbEtapaProjeto->Get("dtprevistatermino") == "")){
     $strMessage .= "&raquo; O campo <strong>Data Prevista de Termino</strong> e de preenchimento obrigatorio.<br>";
   }
-  if($objTbEtapaProjeto->Get("flstatus") == ""){
+  if(empty($objTbEtapaProjeto->Get("flstatus") == "")){
     $strMessage .= "&raquo; O campo <strong>Status</strong> e de preenchimento obrigatorio.<br>";
   }
-
+  //Caso tenha encontrado erros abre a janela de alerta
   if($strMessage != ""){
     $objMsg->Alert('dlg', $strMessage);
   }
@@ -107,6 +132,11 @@ if(isset($_GET['action']) && $_GET['action'] == "gravar"){
     }
   }
 }
+ //------------------------------------------------------------------------------------------------------------------------------------------------------// 
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------//
+//Ação para exclusão de registros
+//------------------------------------------------------------------------------------------------------------------------------------------------------//
 
 if(isset($_GET['action']) && $_GET['action'] == 'excluir'){
   $objTbEtapaProjeto = TbEtapaProjeto::LoadByIdEtapaProjeto($_POST['idEtapaProjeto']);
@@ -120,5 +150,6 @@ if(isset($_GET['action']) && $_GET['action'] == 'excluir'){
     $objMsg->LoadMessage($arrResult);
   }
 }
+  //------------------------------------------------------------------------------------------------------------------------------------------------------//
 
 

@@ -11,20 +11,39 @@ $objTbResponsavelEtapaProjeto = new TbResponsavelEtapaProjeto();
 $objMsg = new Message();
 $fmt = new Format();
 
+//------------------------------------------------------------------------------------------------------------------------------------------------------//
+//Ação de Abertura da Tela de Consulta
+//------------------------------------------------------------------------------------------------------------------------------------------------------//
+
 if (isset($_GET['action']) && $_GET['action'] == 'winConsulta') {
   require_once '../view/viwConsultaResponsavel.php';
 }
 
+//------------------------------------------------------------------------------------------------------------------------------------------------------//
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------//
+//Ação de Inclusão de Registros
+//------------------------------------------------------------------------------------------------------------------------------------------------------//
 if(isset($_GET['action']) && $_GET['action'] == 'incluir'){
   require_once '../view/viwCadastroResponsavel.php';
 }
+//------------------------------------------------------------------------------------------------------------------------------------------------------//
 
+//------------------------------------------------------------------------------------------------------------------------------------------------------//
+//Ação de Edição de Registros
+//------------------------------------------------------------------------------------------------------------------------------------------------------//
 if(isset($_GET['action']) && $_GET['action'] == 'editar'){
   $objTbResponsavelEtapaProjeto = TbResponsavelEtapaProjeto::LoadByIdResponsavelEtapaProjeto($_GET['idresponsaveletapaprojeto']);
   require_once '../view/viwCadastroResponsavel.php';
 }
+//------------------------------------------------------------------------------------------------------------------------------------------------------//
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------//
+//Ação para consulta de Registros
+//------------------------------------------------------------------------------------------------------------------------------------------------------//
 
 if(isset($_GET['action']) && $_GET ['action'] == 'ListResponsavel'){
+  //Verificando o Filtro
   $objFilter = new Filter($_GET);
   $strFiltro = $objFilter->GetWhere();
 
@@ -52,6 +71,11 @@ if(isset($_GET['action']) && $_GET ['action'] == 'ListResponsavel'){
     echo '{"jsnResponsavel": null}'; 
   }
 }
+//------------------------------------------------------------------------------------------------------------------------------------------------------//
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------//
+//Ação para gravação de registros
+//------------------------------------------------------------------------------------------------------------------------------------------------------//
 if(isset($_GET['action']) && $_GET['action'] == "gravar"){
   $objTbResponsavelEtapaProjeto->Set('idresponsaveletapaprojeto',utf8_decode($_POST['idresponsaveletapaprojeto']));
   $objTbResponsavelEtapaProjeto->Set('nmresponsavel', utf8_decode($_POST['nmresponsavel']));
@@ -59,22 +83,22 @@ if(isset($_GET['action']) && $_GET['action'] == "gravar"){
   $objTbResponsavelEtapaProjeto->Set('dsfuncao', utf8_decode($_POST['dsfuncao']));
   $objTbResponsavelEtapaProjeto->Set('dsemail', utf8_decode($_POST['dsemail']));
  
-
+   //Efetuando as validações
   $strMessage = "";
   
-  if($objTbResponsavelEtapaProjeto->Get('nmresponsavel') ==  ""){
+  if(empty($objTbResponsavelEtapaProjeto->Get('nmresponsavel') ==  "")){
     $strMessage .= "&raquo; O campo <strong>Nome</strong> e de preeenchimento obrigatorio.<br>";
   }
-  if($objTbResponsavelEtapaProjeto->Get("dssetor") == ""){
+  if(empty($objTbResponsavelEtapaProjeto->Get("dssetor") == "")){
     $strMessage .= "&raquo; O campo <strong>Setor/strong> e de preenchimento obrigatorio.<br>";
   }
-  if($objTbResponsavelEtapaProjeto->Get("dsfuncao") == ""){
+  if(empty($objTbResponsavelEtapaProjeto->Get("dsfuncao") == "")){
     $strMessage .= "&raquo; O campo <strong>Funcao</strong> e de preenchimento obrigatorio.<br>";
   }
-  if($objTbResponsavelEtapaProjeto->Get("dsemail") == ""){
+  if(empty($objTbResponsavelEtapaProjeto->Get("dsemail") == "")){
     $strMessage .= "&raquo; O campo <strong>E-mail</strong> e de preenchimento obrigatorio.<br>";
   }
-
+  //Caso tenha encontrado erros abre a janela de alerta
   if($strMessage != ""){
     $objMsg->Alert('dlg', $strMessage);
   }
@@ -103,6 +127,11 @@ if(isset($_GET['action']) && $_GET['action'] == "gravar"){
     }
   }
 }
+//------------------------------------------------------------------------------------------------------------------------------------------------------//
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------//
+//Ação para exclusão de registros
+//------------------------------------------------------------------------------------------------------------------------------------------------------//
 
 if(isset($_GET['action']) && $_GET['action'] == 'excluir'){
   $objTbResponsavelEtapaProjeto = TbResponsavelEtapaProjeto::LoadByIdResponsavelEtapaProjeto($_POST['idResponsavelEtapaProjeto']);
@@ -116,3 +145,5 @@ if(isset($_GET['action']) && $_GET['action'] == 'excluir'){
     $objMsg->LoadMessage($arrResult);
   }
 }
+//------------------------------------------------------------------------------------------------------------------------------------------------------//
+
