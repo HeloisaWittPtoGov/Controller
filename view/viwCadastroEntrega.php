@@ -45,7 +45,7 @@
                   'controller/ctrEntrega.php?action=gravar&',
                   $("#frmCadastroEntrega").serialize(),
                   function(response){
-                    Message(respose.flDisplay, response.flTipo, response.dsMsg)
+                    Message(response.flDisplay, response.flTipo, response.dsMsg)
                     if(response.flTipo == "S"){
                       $("#frmConsultaEntrega #BtnPesquisar").click();
                       $("#frmCadastroEntrega #BtnLimpar").click();

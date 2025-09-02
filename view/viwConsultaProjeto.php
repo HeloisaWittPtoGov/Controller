@@ -16,8 +16,8 @@
         orderGrid: "1",
         widthGrid: "70",
         hiddenGrid: "false",
-        headerAttributesGrid: "text-aling: center",
-        attibutesGrid: "text-aling: center",
+        headerAttributesGrid: "text-align: center",
+        attibutesGrid: "text-align: center",
 
         showPreview: "true",
         widthPreview: "70",
@@ -34,8 +34,8 @@
         orderGrid: "2",
         widthGrid: "",
         hiddenGrid: "false",
-        headerAttributesGrid: "text-aling: center",
-        attibutesGrid: "text-aling: center",
+        headerAttributesGrid: "text-align: center",
+        attibutesGrid: "text-align: center",
 
         showPreview: "true",
         widthPreview: "600",
@@ -52,8 +52,8 @@
         orderGrid: "3",
         widthGrid: "",
         hiddenGrid: "false",
-        headerAttributesGrid: "text-aling: center",
-        attibutesGrid: "text-aling: center",
+        headerAttributesGrid: "text-align: center",
+        attibutesGrid: "text-align: center",
 
         showPreview: "true",
         widthPreview: "600",
@@ -70,8 +70,8 @@
         orderGrid: "4",
         widthGrid: "",
         hiddenGrid: "false",
-        headerAttributesGrid: "text-aling: center",
-        attibutesGrid: "text-aling: center",
+        headerAttributesGrid: "text-align: center",
+        attibutesGrid: "text-align: center",
 
         showPreview: "true",
         widthPreview: "120",
@@ -88,8 +88,8 @@
         orderGrid: "5",
         widthGrid: "",
         hiddenGrid: "false",
-        headerAttributesGrid: "text-aling: center",
-        attibutesGrid: "text-aling: center",
+        headerAttributesGrid: "text-align: center",
+        attibutesGrid: "text-align: center",
 
         showPreview: "true",
         widthPreview: "120",
@@ -107,8 +107,8 @@
         orderGrid: "8",
         widthGrid: "100",
         hiddenGrid: "false",
-        headerAttributesGrid: "text-aling: center",
-        attibutesGrid: "text-aling: center",
+        headerAttributesGrid: "text-align: center",
+        attibutesGrid: "text-align: center",
 
         showPreview: "true",
         widthPreview: "120",
@@ -213,7 +213,7 @@
     // Instanciando dataSource da consulta
     //------------------------------------------------------------------------------------------------------//
     var DtsConsultaProjeto = new kendo.data.DataSource({
-      paeSize: 100,
+      pageSize: 100,
       serverPaging: true,
       serverFiltering: true,
       serverSorting: true,
@@ -268,10 +268,10 @@
         tituloPdfExport = 'Listagem de Projeto';
       },
       dataSource: DtsConsultaProjeto,
-      heigth: getHeightGridQuery("ConsultaProjeto"),
+      height: getHeightGridQuery("ConsultaProjeto"),
       selectable: "row",
       resizable: true,
-      rorderable: true,
+      reorderable: true,
       navigatable: true,
       columnMenu: true,
       filterable: true,
@@ -284,7 +284,7 @@
       },
       pageable: {
         pageSizes: [100, 300, 500, "all"],
-        numeirc: false,
+        numeric: false,
         input: true
       },
       columns: getColumnsQuery(arrDataSource),
@@ -306,7 +306,7 @@
       }
     })
 
-    $("#frmConsultaProjeto #GrdConsultaProjeto").on("dbclick", " tbody> tr", function () {
+    $("#frmConsultaProjeto #GrdConsultaProjeto").on("dblclick", " tbody> tr", function () {
     })
     //------------------------------------------------------------------------------------------------------//
 
@@ -355,10 +355,9 @@
         </div>
       </div>
       <div id="splMiddle">
-        <div id="GrdConsultaProjeto" data-use-state-screen="true" data-get-state-scree="false"
-          style="height: auto"></div>
+        <div id="GrdConsultaProjeto" data-use-state-screen="true" data-get-state-scree="false"></div>
       </div>
-      <div id="splfooter">
+      <div id="splFooter">
         <div id="bottonConsultaProjeto">
           <div id="tabStripConsultaProjeto">
             <ul>

@@ -177,7 +177,7 @@ class TbEntrega{
       $fmt = new Format();
       $objTbEntrega = new TbEntrega();
 
-      $dsSql = "INSERT
+      $dsSql = "SELECT
                   en.*
                 FROM
                   shtreinamento.tbentrega en

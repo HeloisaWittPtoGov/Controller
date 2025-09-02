@@ -134,7 +134,7 @@
     }
 
 
-  //Ação para centralizar janela
+   //Ação para centralizar janela
     $("#WinCadastroProjeto").data("kendoWindow").center().open()
 
   })

@@ -33,7 +33,7 @@ if(isset($_GET['action']) && $_GET['action'] == 'incluir'){
 //Ação de Edição de Registros
 //------------------------------------------------------------------------------------------------------------------------------------------------------//
 if(isset($_GET['action']) && $_GET['action'] == 'editar'){
-  $objTbResponsavelEtapaProjeto = TbResponsavelEtapaProjeto::LoadByIdResponsavelEtapaProjeto($_GET['idresponsaveletapaprojeto']);
+  $objTbResponsavelEtapaProjeto = TbResponsavelEtapaProjeto::LoadByIdResponsavelEtapaProjeto($_GET['idResponsavelEtapaProjeto']);
   require_once '../view/viwCadastroResponsavel.php';
 }
 //------------------------------------------------------------------------------------------------------------------------------------------------------//
@@ -62,13 +62,13 @@ if(isset($_GET['action']) && $_GET ['action'] == 'ListResponsavel'){
       array_push($arrLinhas, $arrTempor);
     }
 
-    echo '{"jsnResponsavel":'.json_encode($arrLinhas).'}';
+    echo '{"jsnConsultaResponsavel":'.json_encode($arrLinhas).'}';
   }
   else if(!is_array($aroTbResponsavel) && trim($aroTbResponsavel) != ""){
     echo '{"error":"'.utf8_decode($aroTbResponsavelEtapaProjeto).'"}';
   }
   else{
-    echo '{"jsnResponsavel": null}'; 
+    echo '{"jsnConsultaResponsavel": null}'; 
   }
 }
 //------------------------------------------------------------------------------------------------------------------------------------------------------//
@@ -77,25 +77,25 @@ if(isset($_GET['action']) && $_GET ['action'] == 'ListResponsavel'){
 //Ação para gravação de registros
 //------------------------------------------------------------------------------------------------------------------------------------------------------//
 if(isset($_GET['action']) && $_GET['action'] == "gravar"){
-  $objTbResponsavelEtapaProjeto->Set('idresponsaveletapaprojeto',utf8_decode($_POST['idresponsaveletapaprojeto']));
-  $objTbResponsavelEtapaProjeto->Set('nmresponsavel', utf8_decode($_POST['nmresponsavel']));
-  $objTbResponsavelEtapaProjeto->Set('dssetor', utf8_decode($_POST['dssetor']));
-  $objTbResponsavelEtapaProjeto->Set('dsfuncao', utf8_decode($_POST['dsfuncao']));
-  $objTbResponsavelEtapaProjeto->Set('dsemail', utf8_decode($_POST['dsemail']));
+  $objTbResponsavelEtapaProjeto->Set('idresponsaveletapaprojeto',utf8_decode($_POST['idResponsavelEtapaProjeto']));
+  $objTbResponsavelEtapaProjeto->Set('nmresponsavel', utf8_decode($_POST['nmResponsavel']));
+  $objTbResponsavelEtapaProjeto->Set('dssetor', utf8_decode($_POST['dsSetor']));
+  $objTbResponsavelEtapaProjeto->Set('dsfuncao', utf8_decode($_POST['dsFuncao']));
+  $objTbResponsavelEtapaProjeto->Set('dsemail', utf8_decode($_POST['dsEmail']));
  
    //Efetuando as validações
   $strMessage = "";
   
-  if(empty($objTbResponsavelEtapaProjeto->Get('nmresponsavel') ==  "")){
+  if(empty($objTbResponsavelEtapaProjeto->Get('nmresponsavel'))){
     $strMessage .= "&raquo; O campo <strong>Nome</strong> e de preeenchimento obrigatorio.<br>";
   }
-  if(empty($objTbResponsavelEtapaProjeto->Get("dssetor") == "")){
-    $strMessage .= "&raquo; O campo <strong>Setor/strong> e de preenchimento obrigatorio.<br>";
+  if(empty($objTbResponsavelEtapaProjeto->Get("dssetor"))){
+    $strMessage .= "&raquo; O campo <strong>Setor</strong> e de preenchimento obrigatorio.<br>";
   }
-  if(empty($objTbResponsavelEtapaProjeto->Get("dsfuncao") == "")){
+  if(empty($objTbResponsavelEtapaProjeto->Get("dsfuncao"))){
     $strMessage .= "&raquo; O campo <strong>Funcao</strong> e de preenchimento obrigatorio.<br>";
   }
-  if(empty($objTbResponsavelEtapaProjeto->Get("dsemail") == "")){
+  if(empty($objTbResponsavelEtapaProjeto->Get("dsemail"))){
     $strMessage .= "&raquo; O campo <strong>E-mail</strong> e de preenchimento obrigatorio.<br>";
   }
   //Caso tenha encontrado erros abre a janela de alerta

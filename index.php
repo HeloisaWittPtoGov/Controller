@@ -108,9 +108,9 @@
                 }
               },
                {
-                text: "Consulta de Responsáveis",
+                text: "Consulta de Responsaveis",
                 select: function() {
-                  OpenWindow(false, "ConsultaResposanvel", "controller/ctrResponsavel.php?action=winConsulta", "Consulta de Responsáveis")
+                  OpenWindow(false, "ConsultaResponsavel", "controller/ctrResponsavel.php?action=winConsulta", "Consulta de Responsaveis")
                 }
               },
                {

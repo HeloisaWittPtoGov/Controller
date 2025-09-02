@@ -94,19 +94,19 @@ if(isset($_GET['action']) && $_GET['action'] == "gravar"){
   //Efetuando as validações
   $strMessage = "";
   
-  if(empty($objTbProjeto->Get('dstitulo') ==  "")){
+  if($objTbProjeto->Get('dstitulo') ==  ""){
     $strMessage .= "&raquo; O campo <strong>Titulo</strong> e de preeenchimento obrigatorio.<br>";
   }
-  if(empty($objTbProjeto->Get("dsdescricao") == "")){
+  if($objTbProjeto->Get("dsdescricao") == ""){
     $strMessage .= "&raquo; O campo <strong>Descricao</strong> e de preenchimento obrigatorio.<br>";
   }
-  if(empty($objTbProjeto->Get("dtinicio") == ""))
+  if($objTbProjeto->Get("dtinicio") == ""){
     $strMessage .= "&raquo; O campo <strong>Data de Inicio</strong> e de preenchimento obrigatorio.<br>";
   }
-  if(empty($objTbProjeto->Get("dtprevistatermino") == "")){
+  if($objTbProjeto->Get("dtprevistatermino") == ""){
     $strMessage .= "&raquo; O campo <strong>Data Prevista de Termino</strong> e de preenchimento obrigatorio.<br>";
   }
-  if(empty($objTbProjeto->Get("flstatus") == "")){
+  if($objTbProjeto->Get("flstatus") == ""){
     $strMessage .= "&raquo; O campo <strong>Status</strong> e de preenchimento obrigatorio.<br>";
   }
   
@@ -139,7 +139,7 @@ if(isset($_GET['action']) && $_GET['action'] == "gravar"){
       }
     }
   }
-
+}
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------//
 
@@ -158,8 +158,3 @@ if(isset($_GET['action']) && $_GET['action'] == 'excluir'){
     $objMsg->LoadMessage($arrResult);
   }
 }
- //------------------------------------------------------------------------------------------------------------------------------------------------------//
-
-
-
-

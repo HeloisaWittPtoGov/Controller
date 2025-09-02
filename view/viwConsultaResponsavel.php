@@ -154,128 +154,128 @@
               text: "Fechar",
               group: "actions",
               attributes: {
-                "tabindex":"32"
+                "tabindex": "33"
               },
-              click: function(){
-                $("#WinConsultaResponsavel").data("kendoWindow").close();
+              click: function() {
+                $("#WinConsultaResponsavel").data("kendoWindow").close()
               }
             },
-          ]
-        }
+          ],
+        },
       ]
     })
     //------------------------------------------------------------------------------------------------------//
 
     //-----------------------------------------------------------------------------------------------------//
-      // Filtro extra da consulta
-      //-----------------------------------------------------------------------------------------------------//
-      function getExtraFilter(){
-        //quando usa splitter
-        var arrFields = LoadFilterSplitter('ConsultaResponsavel', arrDataSource)
+    // Filtro extra da consulta
+    //-----------------------------------------------------------------------------------------------------//
+    function getExtraFilter(){
+      //quando usa splitter
+      var arrFields = LoadFilterSplitter('ConsultaResponsavel', arrDataSource)
 
-        return arrFields;
-      }
-      //-----------------------------------------------------------------------------------------------------//
+      return arrFields;
+    }
+    //-----------------------------------------------------------------------------------------------------//
       
     //------------------------------------------------------------------------------------------------------//
-      // Instanciando dataSource da consulta
-      //------------------------------------------------------------------------------------------------------//  
-      var DtsConsultaResponsavel = new kendo.data.DataSource({
-        pageSize: 100,
-        serverPaging: true,
-        serverFiltering: true,
-        serverSorting: true,
-        transport: {
-          read:{
-            url: "controller/ctrResponsavel.php",
-            type: "GET",
-            dataType: "JSON",
-            data: function(){
-              return{
-                action: 'ListResponsavel',
-                filters: getExtraFilter(),
-              }
+    // Instanciando dataSource da consulta
+    //------------------------------------------------------------------------------------------------------//  
+    var DtsConsultaResponsavel = new kendo.data.DataSource({
+      pageSize: 100,
+      serverPaging: true,
+      serverFiltering: true,
+      serverSorting: true,
+      transport: {
+        read:{
+          url: "controller/ctrResponsavel.php",
+          type: "GET",
+          dataType: "JSON",
+          data: function(){
+            return{
+              action: 'ListResponsavel',
+              filters: getExtraFilter(),
             }
           }
-        },
-        schema:{
-          data: "jsnResponsavel",
-          model:{
-            fields: getModelDataSource(arrDataSource)
-          },
-          errors:"error"
-        },
-        error: function(e){
-          DlgError(e.error);
         }
-      })
-      //------------------------------------------------------------------------------------------------------//
-
-      //------------------------------------------------------------------------------------------------------//
-      // Instanciando o Botão de Consulta
-      //------------------------------------------------------------------------------------------------------//
-        $("#frmConsultaResponsavel #BtnPesquisar").kendoButton({
-          spriteCssClass: "k-pg-icon k-i-l1-c2",
-          click: function(e){
-            mountFilteredScreen('filterDefault', e, 'ConsultaResponsavel', arrDataSource, DtsConsultaResponsavel, getExtraFilter());
-
-            $("#frmConsultaResponsavel #BarAcoes").data("kendoToolBar").enable("#BtnEditar", false);
-          }
-        })
-      //------------------------------------------------------------------------------------------------------//
-
-      //------------------------------------------------------------------------------------------------------//
-      // Instanciando grid da consulta
-      //------------------------------------------------------------------------------------------------------//
-        $("#frmConsultaResponsavel #GrdConsultaResponsavel").kendoGrid({
-          pdf: SetPdfOptions("Listagem de Responsáveis"),
-          pdfExport: function(e) {
-            tituloPdfExport = 'Listagem de Responsáveis';
-        },
-        dataSource: DtsConsultaResponsavel,
-        height: getHeightGridQuery("ConsultaResponsavel"),
-        selectable: "row",
-        resizable: true,
-        reorderable: true,
-        navigatable: true,
-        columnMenu: true,
-        filterable: true,
-        sortable:{
-          mode: "multiple",
-          allowUnsort: true,
-        },
-        sort: function(){
-          $("#frmConsultaResponsavel #BarAcoes").data("kendoToolBar").enable("#BtnEditar", false);
-        },
-        pageable: {
-          pageSizes: [100, 300, 500, "all"],
-          numeric: false,
-          input: true
-        },
-        columns: getColumnsQuery(arrDataSource),
-        columnShow: function (e) {
-          setWidthOnShowColumnGrid(e, 'ConsultaResponsavel');
-        },
-        columnHide: function (e) {
-          setWidthOnHideColumnGrid(e, 'ConsultaResponsavel');
-        },
-        dataBound: function (e) {
-          LoadGridExportActions('frmConsultaResponsavel', 'GrdConsultaResponsavel', <?= ($frmResult === '') ?>);
-        },
-        filter: function (e) {
-          mountFilteredScreen('filterColumn', e, 'ConsultaResponsavel', arrDataSource, DtsConsultaResponsavel, getExtraFilter())
-        },
-        change: function () {
-          $("#frmConsultaResponsavel #BarAcoes").data("kendoToolBar").enable("#BtnEditar")
-        }
-      })
-
-      $("#frmConsultaResponsavel #GrdConsultaResponsavel").on("dblclick", " tbody> tr", function () {
-      })
-      //------------------------------------------------------------------------------------------------------//
+      },
+      schema: {
+      data: "jsnConsultaResponsavel",
+      model: {
+        fields: getModelDataSource(arrDataSource)
+      },
+      errors: "error"
+    },
+    error: function(e){
+      DlgError(e.errors);
+    }
+    })
+    //------------------------------------------------------------------------------------------------------//
 
     //------------------------------------------------------------------------------------------------------//
-    // CriaTela de visualização de item do grid na consulta e faz outrs ajustes
+    // Instanciando o Botão de Consulta
+    //------------------------------------------------------------------------------------------------------//
+      $("#frmConsultaResponsavel #BtnPesquisar").kendoButton({
+        spriteCssClass: "k-pg-icon k-i-l1-c2",
+        click: function(e){
+          mountFilteredScreen('filterDefault', e, 'ConsultaResponsavel', arrDataSource, DtsConsultaResponsavel, getExtraFilter());
+
+          $("#frmConsultaResponsavel #BarAcoes").data("kendoToolBar").enable("#BtnEditar", false);
+        }
+      })
+    //------------------------------------------------------------------------------------------------------//
+
+    //------------------------------------------------------------------------------------------------------//
+    // Instanciando grid da consulta
+    //------------------------------------------------------------------------------------------------------//
+    $("#frmConsultaResponsavel #GrdConsultaResponsavel").kendoGrid({
+      pdf: SetPdfOptions("Listagem de ResponsAveis"),
+      pdfExport: function(e) {
+        tituloPdfExport = 'Listagem de ResponsAveis';
+      },
+      dataSource: DtsConsultaResponsavel,
+      height: getHeightGridQuery("ConsultaResponsavel"),
+      selectable: "row",
+      resizable: true,
+      reorderable: true,
+      navigatable: true,
+      columnMenu: true,
+      filterable: true,
+      sortable:{
+        mode: "multiple",
+        allowUnsort: true,
+      },
+      sort: function(){
+        $("#frmConsultaResponsavel #BarAcoes").data("kendoToolBar").enable("#BtnEditar", false)
+      },
+      pageable: {
+        pageSizes: [100, 300, 500, "all"],
+        numeric: false,
+        input: true
+      },
+      columns: getColumnsQuery(arrDataSource),
+      columnShow: function (e) {
+        setWidthOnShowColumnGrid(e, 'ConsultaResponsavel');
+      },
+      columnHide: function (e) {
+        setWidthOnHideColumnGrid(e, 'ConsultaResponsavel');
+      },
+      dataBound: function (e) {
+        LoadGridExportActions('frmConsultaResponsavel', 'GrdConsultaResponsavel', <?= ($frmResult === '') ?>);
+      },
+      filter: function (e) {
+        mountFilteredScreen('filterColumn', e, 'ConsultaResponsavel', arrDataSource, DtsConsultaResponsavel, getExtraFilter())
+      },
+      change: function () {
+        $("#frmConsultaResponsavel #BarAcoes").data("kendoToolBar").enable("#BtnEditar")
+      }
+    })
+
+    $("#frmConsultaResponsavel #GrdConsultaResponsavel").on("dblclick", " tbody> tr", function () {
+    })
+    //------------------------------------------------------------------------------------------------------//
+
+    //------------------------------------------------------------------------------------------------------//
+    // CriaTela de visualização de item do grid na consulta e faz outros ajustes
     //------------------------------------------------------------------------------------------------------//
     createScreenPreview(arrDataSource, "ConsultaResponsavel")
     //------------------------------------------------------------------------------------------------------//
@@ -284,7 +284,7 @@
 
 </script>
 
-<div class="k=form">
+<div class="k-form">
   <form id="frmConsultaResponsavel">
     <div id="splConsulta">
       <div id="splHeader">
@@ -292,7 +292,7 @@
           <table>
             <tr>
               <td style="width: 120px;text-align: right;vertical-align: top;padding-top: 6px;">
-                Filtros(s):
+                Filtro(s):
               </td>
               <td>
                 <div id="fltConsultaResponsavel" style="width: auto; "></div>
@@ -309,16 +309,16 @@
               </td>
             </tr>
           </table>
-          
+
           <div id="BarAcoes" style="text-align: right; height: 28px"></div>
         </div>
       </div>
 
       <div id="splMiddle">
-       <div id="GrdConsultaResponsavel" data-use-state-screen ="true" data-get-state-screen = "false" style="height: auto"></div>
+       <div id="GrdConsultaResponsavel" data-use-state-screen ="true" data-get-state-screen = "false" ></div>
       </div>
 
-      <div id="splfooter">
+      <div id="splFooter">
         <div id="bottonConsultaResponsavel">
           <div id="tabStripConsultaResponsavel">
             <ul>

@@ -66,7 +66,7 @@ class TbResponsavelEtapaProjeto{
     $dtbLink = new DtbCliente();
 
     $dsSql = "INSERT INTO 
-                shtreinamento.tbresponsavel(
+                shtreinamento.tbresponsaveletapaprojeto(
                   idresponsaveletapaprojeto,
                   nmresponsavel,
                   dssetor,
@@ -99,7 +99,7 @@ class TbResponsavelEtapaProjeto{
     $dtbLink = new DtbCliente();
 
     $dsSql - "UPDATE
-                shrteinamento.tbresponsavel
+                shtreinamento.tbresponsaveletapaprojeto
               SET
                 nmresponsavel = '".$objTbResponsavelEtapaProjeto->Get("nmresponsavel")."',
                 dssetor = '".$objTbResponsavelEtapaProjeto->Get("dssetor")."',
@@ -124,7 +124,7 @@ class TbResponsavelEtapaProjeto{
     $dtLink = new DtbCliente();
 
     $dsSql = "DELETE FROM
-                shrteinamento.tbresponsavel
+                shtreinamento.tbresponsaveletapaprojeto
               WHERE
                   idresponsaveletapaprojeto = ".$objTbResponsavelEtapaProjeto->Get('idresponsaveletapaprojeto').";";
 
@@ -153,7 +153,7 @@ class TbResponsavelEtapaProjeto{
     $dsSql = "SELECT
                 rp.*
               FROM
-                shtreinamento.tbresponsavel rp
+                shtreinamento.tbresponsaveletapaprojeto rp
               WHERE
                 rp.idresponsaveletapaprojeto = ".$idResponsavelEtapaProjeto;
 
@@ -182,7 +182,7 @@ class TbResponsavelEtapaProjeto{
     $dsSql = "SELECT
                 rp.*
               FROM 
-                shtreinamento.tbresponsavel rp
+                shtreinamento.tbresponsaveletapaprojeto rp
               WHERE
                 1 = 1 ";
 

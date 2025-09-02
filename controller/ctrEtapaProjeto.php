@@ -80,27 +80,27 @@ if(isset($_GET['action']) && $_GET ['action'] == 'ListEtapaProjeto'){
 //------------------------------------------------------------------------------------------------------------------------------------------------------//
 
 if(isset($_GET['action']) && $_GET['action'] == "gravar"){
-  $objTbEtapaProjeto->Set('idetapaprojeto',utf8_decode($_POST['idetapaprojeto']));
+  $objTbEtapaProjeto->Set('idetapaprojeto',utf8_decode($_POST['idEtapaProjeto']));
   $objTbEtapaProjeto->Set('idprojeto',utf8_decode($_POST['idProjeto']));
-  $objTbEtapaProjeto->Set('nmetapa', utf8_decode($_POST['nmetapa']));
-  $objTbEtapaProjeto->Set('dtprevistainicio', utf8_decode($fmt->data($_POST['dtprevistainicio'])));
-  $objTbEtapaProjeto->Set('dtprevistatermino', utf8_decode($fmt->data($_POST['dtprevistatermino'])));
-  $objTbEtapaProjeto->Set('flstatus', utf8_decode($_POST['flstatus']));
-  $objTbEtapaProjeto->Set('idresponsaveletapaprojeto',utf8_decode($_POST['idresponsaveletapaprojeto']));
+  $objTbEtapaProjeto->Set('nmetapa', utf8_decode($_POST['nmEtapa']));
+  $objTbEtapaProjeto->Set('dtprevistainicio', utf8_decode($fmt->data($_POST['dtPrevistaInicio'])));
+  $objTbEtapaProjeto->Set('dtprevistatermino', utf8_decode($fmt->data($_POST['dtPrevistaTermino'])));
+  $objTbEtapaProjeto->Set('flstatus', utf8_decode($_POST['flStatus']));
+  $objTbEtapaProjeto->Set('idresponsaveletapaprojeto',utf8_decode($_POST['idResponsavelEtapaProjeto']));
 
    //Efetuando as validações
   $strMessage = "";
   
-  if(empty($objTbEtapaProjeto->Get('nmetapa') ==  "")){
+  if(empty($objTbEtapaProjeto->Get('nmetapa'))){
     $strMessage .= "&raquo; O campo <strong>Titulo</strong> e de preeenchimento obrigatorio.<br>";
   }
-  if(empty($objTbEtapaProjeto->Get("dtprevistainicio") == "")){
+  if(empty($objTbEtapaProjeto->Get("dtprevistainicio"))){
     $strMessage .= "&raquo; O campo <strong>Data de Inicio</strong> e de preenchimento obrigatorio.<br>";
   }
-  if(empty($objTbEtapaProjeto->Get("dtprevistatermino") == "")){
+  if(empty($objTbEtapaProjeto->Get("dtprevistatermino"))){
     $strMessage .= "&raquo; O campo <strong>Data Prevista de Termino</strong> e de preenchimento obrigatorio.<br>";
   }
-  if(empty($objTbEtapaProjeto->Get("flstatus") == "")){
+  if(empty($objTbEtapaProjeto->Get("flstatus"))){
     $strMessage .= "&raquo; O campo <strong>Status</strong> e de preenchimento obrigatorio.<br>";
   }
   //Caso tenha encontrado erros abre a janela de alerta

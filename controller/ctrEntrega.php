@@ -81,20 +81,20 @@ if(isset($_GET['action']) && $_GET ['action'] == 'ListEntrega'){
 //------------------------------------------------------------------------------------------------------------------------------------------------------//
 
 if(isset($_GET['action']) && $_GET['action'] == "gravar"){
-  $objTbEntrega->Set('identrega',utf8_decode($_POST['identrega']));
-  $objTbEntrega->Set('idetapaprojeto', utf8_decode($_POST['idetapaprojeto']));
+  $objTbEntrega->Set('identrega',utf8_decode($_POST['idEntrega']));
+  $objTbEntrega->Set('idetapaprojeto', utf8_decode($_POST['idEtapaProjeto']));
   $objTbEntrega->Set('dsdescricao', utf8_decode($_POST['dsDescricao']));
-  $objTbEntrega->Set('dtentrega', utf8_decode($fmt->data($_POST['dtentrega'])));
-  $objTbEntrega->Set('dsobservacao', utf8_decode($_POST['dsobservacao']));
+  $objTbEntrega->Set('dtentrega', utf8_decode($fmt->data($_POST['dtEntrega'])));
+  $objTbEntrega->Set('dsobservacao', utf8_decode($_POST['dsObservacao']));
 
    //Efetuando as validações
   $strMessage = "";
   
 
-  if(empty($objTbEntrega->Get("dsdescricao") == "")){
+  if($objTbEntrega->Get("dsdescricao") == ""){
     $strMessage .= "&raquo; O campo <strong>Descricao</strong> e de preenchimento obrigatorio.<br>";
   }
-  if(empty($objTbEntrega->Get("dtinicio") == "")){
+  if($objTbEntrega->Get("dtentrega") == ""){
     $strMessage .= "&raquo; O campo <strong> Data de Entrega</strong> e de preenchimento obrigatorio.<br>";
   }
  

@@ -31,7 +31,7 @@ class TbEtapaProjeto{
    * Método Set para carga do objeto
    **/  
   public function Set($prpTbEtapaProjeto, $vlTbEtapaProjeto){
-    $this->$prpEtapaProjeto = $vlTbEtapaProjeto;
+    $this->$prpTbEtapaProjeto = $vlTbEtapaProjeto;
   }
     /**
    * Método Get para carga do objeto
@@ -45,13 +45,13 @@ class TbEtapaProjeto{
    */
   public function LoadObject($resSet){
     $objTbEtapaProjeto = new TbEtapaProjeto();
-    $objTbEtapaProjeto->Set("idetapaprojeto", $resSet["idetapaprojeto"]);
-    $objTbEtapaProjeto->Set("idprojeto", $resSet["idprojeto"]);
-    $objTbEtapaProjeto->Set("nmetapa", $resSet["nmetapa"]);
-    $objTbEtapaProjeto->Set("dtprevistainicio", $resSet["dtprevistainicio"]);
-    $objTbEtapaProjeto->Set("dtprevistatermino", $resSet["dtprevistatermino"]);
-    $objTbEtapaProjeto->Set("flstatus", $resSet["flstatus"]);
-    $objTbEtapaProjeto->Set("idresponsaveletapaprojeto", $resSet["idresponsaveletapaprojeto"]);
+    $objTbEtapaProjeto->Set("idetapaprojeto", $resSet["idEtapaProjeto"]);
+    $objTbEtapaProjeto->Set("idprojeto", $resSet["idProjeto"]);
+    $objTbEtapaProjeto->Set("nmetapa", $resSet["nmEtapa"]);
+    $objTbEtapaProjeto->Set("dtprevistainicio", $resSet["dtPrevistaInicio"]);
+    $objTbEtapaProjeto->Set("dtprevistatermino", $resSet["dtPrevistaTermino"]);
+    $objTbEtapaProjeto->Set("flstatus", $resSet["flStatus"]);
+    $objTbEtapaProjeto->Set("idresponsaveletapaprojeto", $resSet["idResponsavelEtapaProjeto"]);
     return $objTbEtapaProjeto;
   }
 

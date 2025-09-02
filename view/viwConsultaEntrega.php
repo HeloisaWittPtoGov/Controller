@@ -43,7 +43,7 @@
         indiceTabPreview: "tabDadosGerais",
       },
       {
-        name: "dsentrega",
+        name: "dtentrega",
         type: "string",
         label: "Entrega",
         visibleFilter: "true",
