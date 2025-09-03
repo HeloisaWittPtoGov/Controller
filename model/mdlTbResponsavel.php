@@ -98,7 +98,7 @@ class TbResponsavelEtapaProjeto{
   public function Update($objTbResponsavelEtapaProjeto){
     $dtbLink = new DtbCliente();
 
-    $dsSql - "UPDATE
+    $dsSql = "UPDATE
                 shtreinamento.tbresponsaveletapaprojeto
               SET
                 nmresponsavel = '".$objTbResponsavelEtapaProjeto->Get("nmresponsavel")."',

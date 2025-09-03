@@ -49,6 +49,18 @@ class TbEntrega{
     $objTbEntrega->Set("idetapaprojeto", $resSet["idetapaprojeto"]);
     return $objTbEntrega;
   }
+
+  public function GetObjTbEtapaProjeto(){
+    if($this->objTbEtapaProjeto == null){
+      $this->objTbEtapaProjeto = new TbEtapaProjeto();
+      if($this->get('idetapaprojeto') != ''){
+        $this->objTbEtapaProjeto = TbEtapaProjeto::LoadByIdEtapaProjeto($this->get('idetapaprojeto'));
+      } 
+    }
+    return $this->objTbEtapaProjeto;
+  }
+
+  
   //-----------------------------------------------------------------------------------------------------------------------------------------//
   // Métodos de Manutenção do Objeto
   //-----------------------------------------------------------------------------------------------------------------------------------------//

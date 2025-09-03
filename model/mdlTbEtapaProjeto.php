@@ -55,6 +55,27 @@ class TbEtapaProjeto{
     return $objTbEtapaProjeto;
   }
 
+  public function GetObjTbProjeto(){
+    if($this->objTbProjeto == null){
+      $this->objTbProjeto = new TbProjeto();
+      if($this->get('idprojeto') != ''){
+        $this->objTbProjeto = TbProjeto::LoadByIdProjeto($this->get('idprojeto'));
+      } 
+    }
+    return $this->objTbProjeto;
+  }
+
+  public function GetObjTbResponsavel(){
+    if($this->objTbResponsavel == null){
+      $this->objTbResponsavel = new TbResponsavelEtapaProjeto();
+      if($this->get('idresponsaveletapaprojeto') != ''){
+        $this->objTbResponsavel = TbResponsavelEtapaProjeto::LoadByIdResponsavel($this->get('ideresponsaveltapaprojeto'));
+      } 
+    }
+    return $this->objTbResponsavel;
+  }
+
+
   //-----------------------------------------------------------------------------------------------------------------------------------------//
   // Métodos de Manutenção do Objeto
   //-----------------------------------------------------------------------------------------------------------------------------------------//

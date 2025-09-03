@@ -29,6 +29,30 @@
 
     //-----------------------------------------------------------------------------------------------------------------------------//
     //-----------------------------------------------------------------------------------------------------------------------------//
+    //Instanciando Botão de abertura da tela de consulta de projetos
+    //-----------------------------------------------------------------------------------------------------------------------------//
+    $("#frmCadastroEtapaProjeto #BtnProjeto").kendoButton({
+      spriteCssClass: "k-pg-icon k-i-l1-c2",
+      click: function(e){
+        OpenWindow(false, "ConsultaProjeto", "controller/ctrProjeto.php?action=winConsulta&frmResult=frmCadastroEtapaProjeto", "Consulta de Projetos")
+      }
+    });
+
+    //-----------------------------------------------------------------------------------------------------------------------------//
+    //Instanciando Botão de abertura da tela de consulta de Responsaveis
+    //-----------------------------------------------------------------------------------------------------------------------------//
+    $("#frmCadastroEtapaProjeto #BtnResponsavel").kendoButton({
+      spriteCssClass: "k-pg-icon k-i-l1-c2",
+      click: function(e){
+        OpenWindow(false, "ConsultaResponsavel", "controller/ctrResponsavel.php?action=winConsulta&frmResult=frmCadastroEtapaProjeto", "Consulta de Responsaveis")
+      }
+    });
+
+    //-----------------------------------------------------------------------------------------------------------------------------//
+
+
+    //-----------------------------------------------------------------------------------------------------------------------------//
+    //-----------------------------------------------------------------------------------------------------------------------------//
     //Barra de ações
     //-----------------------------------------------------------------------------------------------------------------------------//
   
@@ -151,13 +175,25 @@
         <td>
           <input name="idEtapaProjeto" id="idEtapaProjeto" class="k-textbox k-input-disabled" readonly="readonly" style="width: 60px" value="<?php echo $objTbEtapaProjeto->Get('idetapaprojeto')?>">
         </td>
-        <td style="width: 120px; text-align: right;">Id Projeto:</td>
+      </tr>
+    </table>
+    <table width="100%" border="0" cellspacing="2" cellpadding="0">
+      <tr>
+        <td style="width: 120px; text-align:right;">Projeto:</td>
         <td>
-          <input name="idProjeto" id="idProjeto" class="k-textbox k-input-disabled" readonly="readonly" style="width: 60px" value="<?php echo $objTbEtapaProjeto->Get('idprojeto')?>">
+          <input type="text" tabindex="-1" id="idProjeto" name="idProjeto", value="<?php echo $objTbEtapaProjeto->GetObjTbProjeto()->Get('idprojeto')?>" class="k-input-disabled k-textbox" readonly="readonly" style="width: 60px; background-color: #e8e8e8"/>
+          <span tabindex="-1" id="BtnProjeto" style="cursor: pointer; width: 24px; height: 24px;" title="Consultar Projetos..."></span>
+          <input type="text" tabindex="-1" id="dsTitulo" name="dsTitulo" value="<?php echo $objTbEtapaProjeto->GetObjTbProjeto()->Get('dstitulo') ?>" class="k-input-disabled k-textbox" readonly="readonly" style="width: 510px; background-color: #e8e8e8"/> 
         </td>
-        <td style="width: 165px; text-align: right;">Id Responsavel:</td>
+      </tr>
+    </table>
+    <table width="100%" border="0" cellspacing="2" cellpadding="0">
+      <tr>
+        <td style="width: 120px; text-align:right;">Responsavel:</td>
         <td>
-          <input name="idResponsavelEtapaProjeto" id="idResponsavelEtapaProjeto" class="k-textbox k-input-disabled" readonly="readonly" style="width: 60px" value="<?php echo $objTbEtapaProjeto->Get('idresponsaveletapaprojeto')?>">
+          <input type="text" tabindex="-1" id="idResponsavelEtapa" name="idResponsavelEtapa", value="<?php echo $objTbEtapaProjeto->GetObjTbResponsavel()->Get('idresponsaveletapaprojeto')?>" class="k-input-disabled k-textbox" readonly="readonly" style="width: 60px; background-color: #e8e8e8"/>
+          <span tabindex="-1" id="BtnResponsavel" style="cursor: pointer; width: 24px; height: 24px;" title="Consultar Responsaveis..."></span>
+          <input type="text" tabindex="-1" id="nmResponsavel" name="nmResponsavel" value="<?php echo $objTbEtapaProjeto->GetObjTbResponsavel()->Get('nmresponsavel')?>" class="k-input-disabled k-textbox" readonly="readonly" style="width: 510px; background-color: #e8e8e8"/> 
         </td>
       </tr>
     </table>

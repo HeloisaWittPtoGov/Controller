@@ -22,6 +22,18 @@
     //-----------------------------------------------------------------------------------------------------------------------------//
     //Barra de ações
     //-----------------------------------------------------------------------------------------------------------------------------//
+     $("#frmCadastroEntrega #BtnEtapaProjeto").kendoButton({
+      spriteCssClass: "k-pg-icon k-i-l1-c2",
+      click: function(e){
+       OpenWindow(false, "ConsultaEtapaProjeto", "controller/ctrEtapaProjeto.php?action=winConsulta&frmCadastroEntrega", "Consulta de Etapas")
+      }
+     });
+    //-----------------------------------------------------------------------------------------------------------------------------//
+
+    //-----------------------------------------------------------------------------------------------------------------------------//
+    //-----------------------------------------------------------------------------------------------------------------------------//
+    //Barra de ações
+    //-----------------------------------------------------------------------------------------------------------------------------//
     $("#frmCadastroEntrega #BarAcoes").kendoToolBar({
       items: [
         {
@@ -140,9 +152,15 @@
         <td>
           <input name="idEntrega" id="idEntrega" class="k-textbox k-input-disabled" readonly="readonly" style="width: 60px" value="<?php echo $objTbEntrega->Get('identrega')?>">
         </td>
-        <td style="width: 412px; text-align: right;">Id Etapa Projeto:</td>
+      </tr>
+    </table>
+    <table width="100%" border="0" cellspacing="2" cellpadding="0">
+      <tr>
+        <td style="width: 120px; text-align:right;">Etapa:</td>
         <td>
-          <input name="idEtapaProjeto" id="idEtapaProjeto" class="k-textbox k-input-disabled" readonly="readonly" style="width: 60px" value="<?php echo $objTbEntrega->Get('idEtapaProjeto')?>">
+          <input type="text" tabindex="-1" id="idEtapaProjeto" name="idEtapaProjeto" value="<?php echo $objTbEntrega->GetObjTbEtapaProjeto()->Get('idetapaprojeto')?>" class="k-input-disabled k-textbox" readonly="readonly" style="width: 60px; background-color: #e8e8e8"/>
+          <span tabindex="-1" id="BtnEtapaProjeto" style="cursor: pointes; width: 24px; height: 24px;" title="Consultar Projetos..."></span>
+          <input type="text" tabindex="-1" id="dsTitulo" name="dsTitulo" value="<?php echo $objTbEntrega->GetObjTbEtapaProjeto()->Get('nmetapa') ?>" class="k-input-disabled k-textbox" readonly="readonly" style="width: 510px; background-color: #e8e8e8"/> 
         </td>
       </tr>
     </table>
