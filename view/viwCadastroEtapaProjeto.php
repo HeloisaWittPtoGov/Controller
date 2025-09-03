@@ -156,7 +156,7 @@
     });
     //-----------------------------------------------------------------------------------------------------------------------------//
     if($("#frmCadastroEtapaProjeto #idEtapaProjeto").val() != ''){
-      $("#frmCadastroEtapaProjeto #BarAcoes").data("kendoToolBar").enable("BtnExcluir", true);
+      $("#frmCadastroEtapaProjeto #BarAcoes").data("kendoToolBar").enable("#BtnExcluir", true);
     }
 
     
@@ -191,7 +191,7 @@
       <tr>
         <td style="width: 120px; text-align:right;">Responsavel:</td>
         <td>
-          <input type="text" tabindex="-1" id="idResponsavelEtapa" name="idResponsavelEtapa", value="<?php echo $objTbEtapaProjeto->GetObjTbResponsavel()->Get('idresponsaveletapaprojeto')?>" class="k-input-disabled k-textbox" readonly="readonly" style="width: 60px; background-color: #e8e8e8"/>
+          <input type="text" tabindex="-1" id="idResponsavelEtapaProjeto" name="idResponsavelEtapaProjeto", value="<?php echo $objTbEtapaProjeto->GetObjTbResponsavel()->Get('idresponsaveletapaprojeto')?>" class="k-input-disabled k-textbox" readonly="readonly" style="width: 60px; background-color: #e8e8e8"/>
           <span tabindex="-1" id="BtnResponsavel" style="cursor: pointer; width: 24px; height: 24px;" title="Consultar Responsaveis..."></span>
           <input type="text" tabindex="-1" id="nmResponsavel" name="nmResponsavel" value="<?php echo $objTbEtapaProjeto->GetObjTbResponsavel()->Get('nmresponsavel')?>" class="k-input-disabled k-textbox" readonly="readonly" style="width: 510px; background-color: #e8e8e8"/> 
         </td>

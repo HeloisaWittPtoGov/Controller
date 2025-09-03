@@ -72,7 +72,7 @@
       $('#Win' + nmJanela).kendoWindow({
         title: dsTitulo,
         modal: blModal,
-        content: dsUrlController,
+        content: dsUrlController + "&frmResult=" + frmResult,
         height: blModal ? (frmResult ? '500px' : 'auto')  : $("#DivWindowArea").height() - 26,
         width: blModal ? "800px" : "99.6%",
         visible: true,

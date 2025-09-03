@@ -145,7 +145,7 @@
               spriteCssClass: "k-pg-icon k-i-l1-c1",
               text: "Selecionar",
               group: "actions",
-              enable: true,
+              enable: false,
               attributes: {
                 "tabindex": "30"
               },
@@ -156,7 +156,7 @@
                 $("<?=$frmResult?> #idProjeto").val(RstProjeto.idprojeto).change();
                 $("<?=$frmResult?> #dsTitulo").val(RstProjeto.dstitulo).change();
 
-                $("#WinConsultaProjeto").data("kendowindow").close();
+                $("#WinConsultaProjeto").data("kendoWindow").close();
                 
               }
             },
@@ -265,6 +265,8 @@
         mountFilteredScreen('filterDefault', e, 'ConsultaProjeto', arrDataSource, DtsConsultaProjeto, getExtraFilter());
 
         $("#frmConsultaProjeto #BarAcoes").data("kendoToolBar").enable("#BtnEditar", false);
+        $("#frmConsultaProjeto #BarAcoes").data("kendoToolBar").enable("#BtnSelecionar", false);
+        
       }
     })
     //------------------------------------------------------------------------------------------------------//
@@ -293,6 +295,8 @@
       },
       sort: function () {
        $("#frmConsultaProjeto #BarAcoes").data("kendoToolBar").enable("#BtnEditar", false);
+       $("#frmConsultaProjeto #BarAcoes").data("kendoToolBar").enable("#BtnSelecionar", false);
+
       },
       pageable: {
         pageSizes: [100, 300, 500, "all"],
@@ -314,6 +318,9 @@
       },
       change: function () {
         $("#frmConsultaProjeto #BarAcoes").data("kendoToolBar").enable("#BtnEditar")
+        if($("#frmConsultaProjeto #frmResult").val() != ""){
+          $("#frmConsultaProjeto #BarAcoes").data("kendoToolBar").enable("#BtnSelecionar")
+        }
 
       }
     })
@@ -339,6 +346,8 @@
 
 <div class="k-form">
   <form id="frmConsultaProjeto">
+    <input type="hidden" id="frmResult" name="frmResult" value="<?= $frmResult; ?>">
+
     <div id="splConsulta">
       <div id="splHeader">
         <div class="k-bg-blue screen-filter-content">

@@ -135,9 +135,9 @@
                 var RstResponsavel = GrdConsultaResponsavel.dataItem(GrdConsultaResponsavel.select());
 
                 $("<?=$frmResult?> #idResponsavelEtapaProjeto").val(RstResponsavel.idresponsaveletapaprojeto).change();
-                $("<?=$frmResult?> #nmNome").val(RstResponsavel.nmnome).change();
+                $("<?=$frmResult?> #nmResponsavel").val(RstResponsavel.nmresponsavel).change();
 
-                $("#WinConsultaResponsavel").data("kendowindow").close();
+                $("#WinConsultaResponsavel").data("kendoWindow").close();
                 
               }
             },
@@ -245,6 +245,7 @@
           mountFilteredScreen('filterDefault', e, 'ConsultaResponsavel', arrDataSource, DtsConsultaResponsavel, getExtraFilter());
 
           $("#frmConsultaResponsavel #BarAcoes").data("kendoToolBar").enable("#BtnEditar", false);
+          $("#frmConsultaResponsavel #BarAcoes").data("kendoToolBar").enable("#BtnSelecionar", false)
         }
       })
     //------------------------------------------------------------------------------------------------------//
@@ -271,6 +272,7 @@
       },
       sort: function(){
         $("#frmConsultaResponsavel #BarAcoes").data("kendoToolBar").enable("#BtnEditar", false)
+        $("#frmConsultaResponsavel #BarAcoes").data("kendoToolBar").enable("#BtnSelecionar", false)
       },
       pageable: {
         pageSizes: [100, 300, 500, "all"],
@@ -292,6 +294,9 @@
       },
       change: function () {
         $("#frmConsultaResponsavel #BarAcoes").data("kendoToolBar").enable("#BtnEditar")
+        if($("#frmConsultaResponsavel #frmResult").val() != ""){
+          $("#frmConsultaResponsavel #BarAcoes").data("kendoToolBar").enable("#BtnSelecionar")
+        }
       }
     })
 
@@ -311,6 +316,8 @@
 
 <div class="k-form">
   <form id="frmConsultaResponsavel">
+    <input type="hidden" id="frmResult" name="frmResult" value="<?= $frmResult; ?>">
+    
     <div id="splConsulta">
       <div id="splHeader">
         <div class="k-bg-blue screen-filter-content">

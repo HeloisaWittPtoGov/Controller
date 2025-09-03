@@ -19,6 +19,11 @@ $fmt = new Format();
 //------------------------------------------------------------------------------------------------------------------------------------------------------//
 
 if (isset($_GET['action']) && $_GET['action'] == 'winConsulta') {
+  $frmResult = '';
+  if($_GET['frmResult'] != '') {
+    $frmResult = '#'.$_GET['frmResult'];
+  }
+
   require_once '../view/viwConsultaProjeto.php';
 }
 //------------------------------------------------------------------------------------------------------------------------------------------------------//
@@ -64,6 +69,18 @@ if(isset($_GET['action']) && $_GET ['action'] == 'ListProjeto'){
       $arrTempor["dtinicio"] = utf8_encode($fmt->data($objTbProjeto->Get("dtinicio")));
       $arrTempor["dtprevistatermino"] = utf8_encode($fmt->data($objTbProjeto->Get("dtprevistatermino")));
       $arrTempor["flstatus"] = utf8_encode($objTbProjeto->Get("flstatus"));
+
+      switch($objTbProjeto->Get("flstatus")){
+        case 'AD':
+          $arrTempor["flstatus"] = utf8_encode("Andamento");
+          break;
+        case 'PS':
+          $arrTempor["flstatus"] = utf8_encode("Pausado");
+          break;
+        case 'CD':
+          $arrTempor["flstatus"] = utf8_encode("Concluido");
+          break;    
+        }
 
       array_push($arrLinhas, $arrTempor);
     }

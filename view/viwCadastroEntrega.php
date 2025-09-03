@@ -25,7 +25,7 @@
      $("#frmCadastroEntrega #BtnEtapaProjeto").kendoButton({
       spriteCssClass: "k-pg-icon k-i-l1-c2",
       click: function(e){
-       OpenWindow(false, "ConsultaEtapaProjeto", "controller/ctrEtapaProjeto.php?action=winConsulta&frmCadastroEntrega", "Consulta de Etapas")
+       OpenWindow(false, "ConsultaEtapaProjeto", "controller/ctrEtapaProjeto.php?action=winConsulta", "Consulta de Etapas", "frmCadastroEntrega")
       }
      });
     //-----------------------------------------------------------------------------------------------------------------------------//
@@ -135,7 +135,7 @@
     //-----------------------------------------------------------------------------------------------------------------------------//
 
      if($("#frmCadastroEntrega #idEntrega").val() != ''){
-      $("#frmCadastroEntrega #BarAcoes").data("kendoToolBar").enable("BtnExlcuir", true);
+      $("#frmCadastroEntrega #BarAcoes").data("kendoToolBar").enable("#BtnExcluir", true);
     }
 
     //Ação para centralizar janela
@@ -160,7 +160,7 @@
         <td>
           <input type="text" tabindex="-1" id="idEtapaProjeto" name="idEtapaProjeto" value="<?php echo $objTbEntrega->GetObjTbEtapaProjeto()->Get('idetapaprojeto')?>" class="k-input-disabled k-textbox" readonly="readonly" style="width: 60px; background-color: #e8e8e8"/>
           <span tabindex="-1" id="BtnEtapaProjeto" style="cursor: pointes; width: 24px; height: 24px;" title="Consultar Projetos..."></span>
-          <input type="text" tabindex="-1" id="dsTitulo" name="dsTitulo" value="<?php echo $objTbEntrega->GetObjTbEtapaProjeto()->Get('nmetapa') ?>" class="k-input-disabled k-textbox" readonly="readonly" style="width: 510px; background-color: #e8e8e8"/> 
+          <input type="text" tabindex="-1" id="nmEtapa" name="nmEtapa" value="<?php echo $objTbEntrega->GetObjTbEtapaProjeto()->Get('nmetapa') ?>" class="k-input-disabled k-textbox" readonly="readonly" style="width: 510px; background-color: #e8e8e8"/> 
         </td>
       </tr>
     </table>
@@ -168,7 +168,7 @@
       <tr>
         <td style="width: 120px; text-align: right;">Descrição:</td>
         <td>
-          <input name="dsDescricao" id="dsDescricao" class="k-textbox" style="width: 600px" value="<?php echo $objTbEntrega->Get('dsDescricao')?>">
+          <input name="dsDescricao" id="dsDescricao" class="k-textbox" style="width: 600px" value="<?php echo $objTbEntrega->Get('dsdescricao')?>">
         </td>
       </tr>
     </table>
@@ -176,7 +176,7 @@
       <tr>
         <td style="width: 120px; text-align: right;">Data Entrega:</td>
         <td>
-          <input name="dtEntrega" id="dtEntrega" style="width: 100px" value="<?php echo $objTbEntrega->Get('dtEntrega')?>">
+          <input name="dtEntrega" id="dtEntrega" style="width: 100px" value="<?php echo $objTbEntrega->Get('dtentrega')?>">
         </td>
       </tr>
     </table>
@@ -184,7 +184,7 @@
       <tr>
         <td style="width: 120px; text-align: right;">Observações:</td>
         <td>
-          <input name="dsObrsevacao" id="dsObrsevacao" class="k-textbox" style="width: 600px" value="<?php echo $objTbEntrega->Get('dsObrsevacao')?>">
+          <input name="dsObservacao" id="dsObservacao" class="k-textbox" style="width: 600px" value="<?php echo $objTbEntrega->Get('dsobservacao')?>">
         </td>
       </tr>
     </table>

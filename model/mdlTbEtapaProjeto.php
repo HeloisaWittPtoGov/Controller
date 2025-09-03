@@ -45,13 +45,13 @@ class TbEtapaProjeto{
    */
   public function LoadObject($resSet){
     $objTbEtapaProjeto = new TbEtapaProjeto();
-    $objTbEtapaProjeto->Set("idetapaprojeto", $resSet["idEtapaProjeto"]);
-    $objTbEtapaProjeto->Set("idprojeto", $resSet["idProjeto"]);
-    $objTbEtapaProjeto->Set("nmetapa", $resSet["nmEtapa"]);
-    $objTbEtapaProjeto->Set("dtprevistainicio", $resSet["dtPrevistaInicio"]);
-    $objTbEtapaProjeto->Set("dtprevistatermino", $resSet["dtPrevistaTermino"]);
-    $objTbEtapaProjeto->Set("flstatus", $resSet["flStatus"]);
-    $objTbEtapaProjeto->Set("idresponsaveletapaprojeto", $resSet["idResponsavelEtapaProjeto"]);
+    $objTbEtapaProjeto->Set("idetapaprojeto", $resSet["idetapaprojeto"]);
+    $objTbEtapaProjeto->Set("idprojeto", $resSet["idprojeto"]);
+    $objTbEtapaProjeto->Set("nmetapa", $resSet["nmetapa"]);
+    $objTbEtapaProjeto->Set("dtprevistainicio", $resSet["dtprevistainicio"]);
+    $objTbEtapaProjeto->Set("dtprevistatermino", $resSet["dtprevistatermino"]);
+    $objTbEtapaProjeto->Set("flstatus", $resSet["flstatus"]);
+    $objTbEtapaProjeto->Set("idresponsaveletapaprojeto", $resSet["idresponsaveletapaprojeto"]);
     return $objTbEtapaProjeto;
   }
 
@@ -69,7 +69,7 @@ class TbEtapaProjeto{
     if($this->objTbResponsavel == null){
       $this->objTbResponsavel = new TbResponsavelEtapaProjeto();
       if($this->get('idresponsaveletapaprojeto') != ''){
-        $this->objTbResponsavel = TbResponsavelEtapaProjeto::LoadByIdResponsavel($this->get('ideresponsaveltapaprojeto'));
+        $this->objTbResponsavel = TbResponsavelEtapaProjeto::LoadByIdResponsavelEtapaProjeto($this->get('idresponsaveletapaprojeto'));
       } 
     }
     return $this->objTbResponsavel;
@@ -104,8 +104,8 @@ class TbEtapaProjeto{
                   '".$objTbEtapaProjeto->Get("idprojeto")."',
                   '".$objTbEtapaProjeto->Get("nmetapa")."',
                   '".$objTbEtapaProjeto->Get("dtprevistainicio")."',
-                  '".$objTbEtapaProjeto->Get("dtprevistaitermino")."',
-                  '".$objTbEtapaProjeto->Get("dflstatus")."',
+                  '".$objTbEtapaProjeto->Get("dtprevistatermino")."',
+                  '".$objTbEtapaProjeto->Get("flstatus")."',
                   '".$objTbEtapaProjeto->Get("idresponsaveletapaprojeto")."'
                 )";
     if(!$dtblink->Exec($dsSql)){
@@ -127,14 +127,14 @@ class TbEtapaProjeto{
     $dsSql= "UPDATE
               shtreinamento.tbetapaprojeto
             SET
-              nmetapa = '".$objTbProjeto->Get("nmetapa")."',  
-              dtprevistainicio = '".$objTbProjeto->Get("dtprevistainicio")."',
-              dtprevistatermino = '".$objTbProjeto->Get("dtprevistatermino")."',
-              flstatus = '".$objTbProjeto->Get("flstatus")."',
-              idresponsaveletapaprojeto = '".$objTbProjeto->Get("idresponsaveletapaprojeto")."',
+              nmetapa = '".$objTbEtapaProjeto->Get("nmetapa")."',  
+              dtprevistainicio = '".$objTbEtapaProjeto->Get("dtprevistainicio")."',
+              dtprevistatermino = '".$objTbEtapaProjeto->Get("dtprevistatermino")."',
+              flstatus = '".$objTbEtapaProjeto->Get("flstatus")."',
+              idresponsaveletapaprojeto = '".$objTbEtapaProjeto->Get("idresponsaveletapaprojeto")."'
             WHERE 
-              idetapaprojeto = ".$objTbEtapaProjeto->Get("idetapaprojeto").",";
-    if(!$drblink->Exec($dsSql)){
+              idetapaprojeto = ".$objTbEtapaProjeto->Get("idetapaprojeto").";";
+    if(!$dtblink->Exec($dsSql)){
       $arrMsg = $dtblink->getMessage();
     } else{
       $arrMsg["dsMsg"] = "ok";
@@ -172,7 +172,7 @@ class TbEtapaProjeto{
    * @param $idEtapaProjeto -> Chave a ser buscada
    * @return TbEtapaProjeto
    **/  
-  public static function LoadByIdEtapaProjeto($idEtapaProjeto){
+  public static function LoadByIdEtapaProjeto($idetapaprojeto){
     $dtblink = new DtbCliente();
     $fmt = new Format();
     $objTbEtapaProjeto = new TbEtapaProjeto();
@@ -221,7 +221,7 @@ class TbEtapaProjeto{
     }   
     else{
       while($resSet = $dtbLink->FetchArray()){
-        $aroTbEtapaProjeto = $objTbEtapaProjeto->LoadObject($resSet);
+        $aroTbEtapaProjeto[] = $objTbEtapaProjeto->LoadObject($resSet);
       }
       return $aroTbEtapaProjeto;
     }      

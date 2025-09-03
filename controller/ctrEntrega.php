@@ -52,16 +52,19 @@ if(isset($_GET['action']) && $_GET ['action'] == 'ListEntrega'){
 
   $aroTbEntrega = TbEntrega::ListByCondicao($strFiltro, $objFilter->GetOrderBy());
 
-  if(is_array($aroTbProjeto) && count($aroTbProjeto) > 0){
+  if(is_array($aroTbEntrega) && count($aroTbEntrega) > 0){
     $arrLinhas = [];
     $arrTempor = [];
 
     foreach($aroTbEntrega as $objTbEntrega){
       $arrTempor["identrega"] = utf8_encode($objTbEntrega->Get("identrega"));
       $arrTempor["idetapaprojeto"] = utf8_encode($objTbEntrega->Get("idetapaprojeto"));
+      $arrTempor["nmetapa"]= utf8_encode($objTbEntrega->GetObjTbEtapaProjeto()->Get('nmetapa'));
       $arrTempor["dsdescricao"] = utf8_encode($objTbEntrega->Get("dsdescricao"));
       $arrTempor["dtentrega"] = utf8_encode($fmt->data($objTbEntrega->Get("dtentrega")));
       $arrTempor["dsobservacao"] = utf8_encode($objTbEntrega->Get("dsobservacao"));
+
+
       array_push($arrLinhas, $arrTempor);
     }
 

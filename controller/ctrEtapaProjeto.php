@@ -16,6 +16,10 @@ $fmt = new Format();
 //------------------------------------------------------------------------------------------------------------------------------------------------------//
 
 if (isset($_GET['action']) && $_GET['action'] == 'winConsulta') {
+    $frmResult = '';
+  if($_GET['frmResult'] != '') {
+    $frmResult = '#'.$_GET['frmResult'];
+  }
   require_once '../view/viwConsultaEtapaProjeto.php';
 }
 //------------------------------------------------------------------------------------------------------------------------------------------------------//
@@ -55,11 +59,24 @@ if(isset($_GET['action']) && $_GET ['action'] == 'ListEtapaProjeto'){
     foreach($aroTbEtapaProjeto as $objTbEtapaProjeto){
       $arrTempor["idetapaprojeto"] = utf8_encode($objTbEtapaProjeto->Get("idetapaprojeto"));
       $arrTempor["idprojeto"] = utf8_encode($objTbEtapaProjeto->Get("idprojeto"));
+      $arrTempor["dstitulo"]= utf8_encode($objTbEtapaProjeto->GetObjTbProjeto()->Get('dstitulo'));
       $arrTempor["nmetapa"] = utf8_encode($objTbEtapaProjeto->Get("nmetapa"));
       $arrTempor["dtprevistainicio"] = utf8_encode($fmt->data($objTbEtapaProjeto->Get("dtprevistainicio")));
       $arrTempor["dtprevistatermino"] = utf8_encode($fmt->data($objTbEtapaProjeto->Get("dtprevistatermino")));
-      $arrTempor["flstatus"] = utf8_encode($objTbEtapaProjeto->Get("flstatus"));
       $arrTempor["idresponsaveletapaprojeto"] = utf8_encode($objTbEtapaProjeto->Get("idresponsaveletapaprojeto"));
+      $arrTempor["nmresponsavel"]= utf8_encode($objTbEtapaProjeto->GetObjTbResponsavel()->Get('nmresponsavel'));
+
+      switch($objTbEtapaProjeto->Get('flstatus')){
+        case 'NI':
+          $arrTempor["flstatus"] = utf8_encode("Não Iniciado");
+          break;
+        case 'EA':
+          $arrTempor['flstatus'] = utf8_encode("Em Andamento");
+          break;
+        case 'CD': 
+          $arrTempor['flstatus'] = utf8_encode("Concluido");
+          break;    
+      }
 
       array_push($arrLinhas, $arrTempor);
     }

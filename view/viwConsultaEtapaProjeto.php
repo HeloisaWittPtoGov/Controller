@@ -14,7 +14,7 @@
           orderFilter: "2",
 
           orderGrid: "1",
-          widthGrid: "70",
+          widthGrid: "60",
           hiddenGrid: "false",
           headerAttributesGrid: "text-aling: center",
           attibutesGrid: "text-aling: center",
@@ -32,7 +32,7 @@
           orderFilter: "3",
 
           orderGrid: "2",
-          widthGrid: "70",
+          widthGrid: "90",
           hiddenGrid: "false",
           headerAttributesGrid: "text-aling: center",
           attibutesGrid: "text-aling: center",
@@ -44,11 +44,11 @@
           togetherPreview:"idetapaprojeto"
       },
       {
-          name: "nmetapa",
+          name: "dstitulo",
           type: "string",
-          label: "Etapa",
+          label: "Titulo Projeto",
           visibleFilter: "true",
-          orderFilter: "1",
+          orderFilter: "3",
 
           orderGrid: "3",
           widthGrid: "",
@@ -57,14 +57,14 @@
           attibutesGrid: "text-aling: center",
 
           showPreview: "true",
-          widthPreview: "600",
+          widthPreview: "70",
           positionPreview: "3",
           indiceTabPreview: "tabDadosGerais",
-      },
+      },   
       {
-          name: "dtprevistainicio",
-          type: "date",
-          label: "Data Prevista Inicio",
+          name: "nmetapa",
+          type: "string",
+          label: "Etapa",
           visibleFilter: "true",
           orderFilter: "4",
 
@@ -75,19 +75,19 @@
           attibutesGrid: "text-aling: center",
 
           showPreview: "true",
-          widthPreview: "100",
+          widthPreview: "600",
           positionPreview: "4",
           indiceTabPreview: "tabDadosGerais",
       },
       {
-          name: "dtprevistatermino",
+          name: "dtprevistainicio",
           type: "date",
-          label: "Data Prevista Termino",
+          label: "Dt. Prevista Inicio",
           visibleFilter: "true",
           orderFilter: "5",
 
           orderGrid: "5",
-          widthGrid: "",
+          widthGrid: "110",
           hiddenGrid: "false",
           headerAttributesGrid: "text-aling: center",
           attibutesGrid: "text-aling: center",
@@ -96,17 +96,16 @@
           widthPreview: "100",
           positionPreview: "5",
           indiceTabPreview: "tabDadosGerais",
-          togetherPreview:"dtprevistainicio" 
       },
       {
-          name: "flstatus",
-          type: "string",
-          label: "Status",
+          name: "dtprevistatermino",
+          type: "date",
+          label: "Dt. Prevista Termino",
           visibleFilter: "true",
           orderFilter: "6",
 
           orderGrid: "6",
-          widthGrid: "",
+          widthGrid: "110",
           hiddenGrid: "false",
           headerAttributesGrid: "text-aling: center",
           attibutesGrid: "text-aling: center",
@@ -115,16 +114,17 @@
           widthPreview: "100",
           positionPreview: "6",
           indiceTabPreview: "tabDadosGerais",
+          togetherPreview:"dtprevistainicio" 
       },
       {
-          name: "idresponsaveletapaprojeto",
+          name: "flstatus",
           type: "string",
-          label: "Responsável Etapa",
+          label: "Status",
           visibleFilter: "true",
           orderFilter: "7",
 
           orderGrid: "7",
-          widthGrid: "",
+          widthGrid: "100",
           hiddenGrid: "false",
           headerAttributesGrid: "text-aling: center",
           attibutesGrid: "text-aling: center",
@@ -132,6 +132,42 @@
           showPreview: "true",
           widthPreview: "100",
           positionPreview: "7",
+          indiceTabPreview: "tabDadosGerais",
+      },
+      {
+          name: "idresponsaveletapaprojeto",
+          type: "string",
+          label: "ID Responsavel",
+          visibleFilter: "true",
+          orderFilter: "8",
+
+          orderGrid: "8",
+          widthGrid: "120",
+          hiddenGrid: "false",
+          headerAttributesGrid: "text-aling: center",
+          attibutesGrid: "text-aling: center",
+
+          showPreview: "true",
+          widthPreview: "160",
+          positionPreview: "8",
+          indiceTabPreview: "tabDadosGerais",
+      },
+      {
+          name: "nmresponsavel",
+          type: "string",
+          label: "Nome Responsavel",
+          visibleFilter: "true",
+          orderFilter: "9",
+
+          orderGrid: "9",
+          widthGrid: "",
+          hiddenGrid: "false",
+          headerAttributesGrid: "text-aling: center",
+          attibutesGrid: "text-aling: center",
+
+          showPreview: "true",
+          widthPreview: "600",
+          positionPreview: "9",
           indiceTabPreview: "tabDadosGerais",
       }
     ] 
@@ -169,12 +205,12 @@
               },
               click: function () {
                 var GrdConsultaEtapaProjeto = $("#frmConsultaEtapaProjeto #GrdConsultaEtapaProjeto").data("kendoGrid");
-                var RstEtapaProjeto = GrdEtapaProjeto.dataItem(GrdEtapaProjeto.select());
+                var RstEtapaProjeto = GrdConsultaEtapaProjeto.dataItem(GrdConsultaEtapaProjeto.select());
 
-                $("<?=$frmResult?> #idEtapaProjeto").val(RstResponsavel.idetapaprojeto).change();
-                $("<?=$frmResult?> #dsDescricao").val(RstResponsavel.dsdescricao).change();
+                $("<?=$frmResult?> #idEtapaProjeto").val(RstEtapaProjeto.idetapaprojeto).change();
+                $("<?=$frmResult?> #nmEtapa").val(RstEtapaProjeto.nmetapa).change();
 
-                $("#WinConsultaResponsavel").data("kendowindow").close();
+                $("#WinConsultaEtapaProjeto").data("kendoWindow").close();
                 
               }
             },
@@ -283,6 +319,7 @@
           mountFilteredScreen('filterDefault', e, 'ConsultaEtapaProjeto', arrDataSource, DtsConsultaEtapaProjeto, getExtraFilter());
 
           $("#frmConsultaEtapaProjeto #BarAcoes").data("kendoToolBar").enable("#BtnEditar", false);
+          $("#frmConsultaEtapaProjeto #BarAcoes").data("kendoToolBar").enable("#BtnSelecionar", false);
         }
       })
       //------------------------------------------------------------------------------------------------------//
@@ -309,6 +346,7 @@
         },
         sort: function () {
         $("#frmConsultaEtapaProjeto #BarAcoes").data("kendoToolBar").enable("#BtnEditar", false);
+        $("#frmConsultaEtapaProjeto #BarAcoes").data("kendoToolBar").enable("#BtnSelecionar", false);
         },
         pageable: {
           pageSizes: [100, 300, 500, "all"],
@@ -330,6 +368,9 @@
         },
         change: function () {
           $("#frmConsultaEtapaProjeto #BarAcoes").data("kendoToolBar").enable("#BtnEditar")
+           if($("#frmConsultaEtapaProjeto #frmResult").val() != ""){
+          $("#frmConsultaEtapaProjeto #BarAcoes").data("kendoToolBar").enable("#BtnSelecionar")
+          }
         }
       })
 
@@ -348,6 +389,8 @@
 
 <div class="k-form">
   <form id="frmConsultaEtapaProjeto">
+    <input type="hidden" id="frmResult" name="frmResult" value="<?= $frmResult; ?>">
+
     <div id="splConsulta">
       <div id="splHeader">
         <div class="k-bg-blue screen-filter-content">

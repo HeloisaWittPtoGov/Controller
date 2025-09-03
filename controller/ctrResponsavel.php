@@ -16,6 +16,10 @@ $fmt = new Format();
 //------------------------------------------------------------------------------------------------------------------------------------------------------//
 
 if (isset($_GET['action']) && $_GET['action'] == 'winConsulta') {
+  $frmResult = '';
+  if($_GET['frmResult'] != '') {
+    $frmResult = '#'.$_GET['frmResult'];
+  }
   require_once '../view/viwConsultaResponsavel.php';
 }
 

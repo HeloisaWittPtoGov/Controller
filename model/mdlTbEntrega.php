@@ -27,7 +27,7 @@ class TbEntrega{
    * Método Set para carga do objeto
    **/  
   public function Set($prpTbEntrega, $vlTbEntrega){
-    $this->$prpEntrega = $vlTbEntrega;
+    $this->$prpTbEntrega = $vlTbEntrega;
   }
     /**
    * Método Get para carga do objeto
@@ -60,6 +60,9 @@ class TbEntrega{
     return $this->objTbEtapaProjeto;
   }
 
+
+
+
   
   //-----------------------------------------------------------------------------------------------------------------------------------------//
   // Métodos de Manutenção do Objeto
@@ -76,18 +79,18 @@ class TbEntrega{
 
     $dsSql = "INSERT INTO
                 shtreinamento.tbentrega(
-                  identrega;
-                  dsdescricao;
-                  dtentrega;
-                  dsobservacao;
-                  idetapaprojeto;
+                  identrega,
+                  dsdescricao,
+                  dtentrega,
+                  dsobservacao,
+                  idetapaprojeto
                 )
                 VALUES(
-                  (SELECT NEXTVAL('shtreinamento.sqidentrega')),
+                  (SELECT NEXTVAL('shtreinamento.sqidentraga')),
                   '".$objTbEntrega->Get("dsdescricao")."',
                   '".$objTbEntrega->Get("dtentrega")."',
                   '".$objTbEntrega->Get("dsobservacao")."',
-                  '".$objTbEntrega->Get("idetapaprojeto")."',
+                  '".$objTbEntrega->Get("idetapaprojeto")."'
                 )";
     if(!$dtblink->Exec($dsSql)){
       $arrMsg = $dtblink->getMessage();
@@ -113,9 +116,9 @@ class TbEntrega{
                 dsdescricao = '".$objTbEntrega->Get("dsdescricao")."',   
                 dtentrega = '".$objTbEntrega->Get("dtentrega")."',
                 dsobservacao = '".$objTbEntrega->Get("dsobservacao")."',
-                idetapaprojeto = '".$objTbEntrega->Get("idetapaprojeto")."',
+                idetapaprojeto = '".$objTbEntrega->Get("idetapaprojeto")."'
               WHERE
-                identrega =".$objTbEntrega->Get("identrega")."; ";
+                identrega =".$objTbEntrega->Get("identrega").";";
     if(!$dtblink->Exec($dsSql)){
       $arrMsg = $dtblink->getMessage();
     } 
@@ -157,19 +160,19 @@ class TbEntrega{
    * @return TbEntrega
    **/  
 
-  public static function LoadByIdEntrega($idEntrega){
-    $dtb = new DateTime();
+  public static function LoadByIdEntrega($identrega){
+    $dtblink = new DtbCliente();
     $fmt = new Format();
     $objTbEntrega = new TbEntrega();
 
-    $dsSql = "INSERT
+    $dsSql = "SELECT
                 en.*
               FROM
                 shtreinamento.tbentrega en
               WHERE  
                 en.identrega = ".$identrega;
     if(!$dtblink->Query($dsSql)){
-      return $fmt->RemoveQuebraLinha($dtbLink->getMessage()["dsMsg"]."<br>");
+      return $fmt->RemoveQuebraLinha($dtblink->getMessage()["dsMsg"]."<br>");
     } 
     else{
       $resSet = $dtblink->FetchArray();
@@ -202,11 +205,11 @@ class TbEntrega{
         $dsSql .=" ORDER BY ".$strOrdenacao;
       }
       if(!$dtblink->Query($dsSql)){
-        return $fmt->RemoveQuebraLinha($dtbLink->getMessage()["dsMsg"]."<br>");
+        return $fmt->RemoveQuebraLinha($dtblink->getMessage()["dsMsg"]."<br>");
       }    
       else{
         while($resSet = $dtblink->FetchArray()){
-            $aroTbEntrega = $objTbEntrega->LoadObject($resSet);
+            $aroTbEntrega[] = $objTbEntrega->LoadObject($resSet);
         }   
           return $aroTbEntrega; 
       }
@@ -220,10 +223,10 @@ class TbEntrega{
     $dtblink = new DtbCliente();
     $fmt = new Format();
 
-    $dsSql = "SELECT NEXTVAL('shtreinamento.sqidentrega') AS nextid ";
+    $dsSql = "SELECT NEXTVAL('shtreinamento.sqidentraga') AS nextid ";
 
     if(!$dtblink->Query($dsSql)){
-      return $fmt->RemoveQuebraLinha($dtbLink->getMessage()["dsMsg"]."<br>");
+      return $fmt->RemoveQuebraLinha($dtblink->getMessage()["dsMsg"]."<br>");
     }
     else{
       $resSet = $dtblink->FetchArray();

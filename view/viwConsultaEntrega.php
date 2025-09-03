@@ -50,7 +50,7 @@
         orderFilter: "3",
 
         orderGrid: "3",
-        widthGrid: "",
+        widthGrid: "110",
         hiddenGrid: "false",
         headerAttributesGrid: "text-align: center",
         attibutesGrid: "text-align: center",
@@ -61,7 +61,7 @@
         indiceTabPreview: "tabDadosGerais",
       },
       {
-        name: "dsobrservacao",
+        name: "dsobservacao",
         type: "string",
         label: "Observação",
         visibleFilter: "true",
@@ -81,12 +81,12 @@
       {
         name: "idetapaprojeto",
         type: "integer",
-        label: "ID Etapa Projeto",
+        label: "ID Etapa",
         visibleFilter: "true",
         orderFilter: "5",
 
         orderGrid: "5",
-        widthGrid: "",
+        widthGrid: "110",
         hiddenGrid: "false",
         headerAttributesGrid: "text-align: center",
         attibutesGrid: "text-align: center",
@@ -94,6 +94,24 @@
         showPreview: "true",
         widthPreview: "",
         positionPreview: "5",
+        indiceTabPreview: "tabDadosGerais",
+      },
+      {
+        name: "nmetapa",
+        type: "string",
+        label: "Etapa",
+        visibleFilter: "true",
+        orderFilter: "6",
+
+        orderGrid: "6",
+        widthGrid: "",
+        hiddenGrid: "false",
+        headerAttributesGrid: "text-align: center",
+        attibutesGrid: "text-align: center",
+
+        showPreview: "true",
+        widthPreview: "",
+        positionPreview: "6",
         indiceTabPreview: "tabDadosGerais",
       }
     ]
@@ -145,7 +163,7 @@
               click: function(){
                 var GrdConsultaEntrega = $("#frmConsultaEntrega #GrdConsultaEntrega").data("kendoGrid");
                 var RstEntrega = GrdConsultaEntrega.dataItem(GrdConsultaEntrega.select());
-                OpenWindow(true, "CadastroEntrega", "controller/ctrEntrega.php?action=editar&identrega="+RstEntrega.identrega)
+                OpenWindow(true, "CadastroEntrega", "controller/ctrEntrega.php?action=editar&idEntrega="+RstEntrega.identrega)
               }
             },
             {
