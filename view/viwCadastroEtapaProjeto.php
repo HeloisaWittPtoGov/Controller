@@ -34,7 +34,7 @@
     $("#frmCadastroEtapaProjeto #BtnProjeto").kendoButton({
       spriteCssClass: "k-pg-icon k-i-l1-c2",
       click: function(e){
-        OpenWindow(false, "ConsultaProjeto", "controller/ctrProjeto.php?action=winConsulta&frmResult=frmCadastroEtapaProjeto", "Consulta de Projetos")
+        OpenWindow(true, "ConsultaProjeto", "controller/ctrProjeto.php?action=winConsulta", "Consulta de Projetos", "frmCadastroEtapaProjeto")
       }
     });
 
@@ -44,7 +44,7 @@
     $("#frmCadastroEtapaProjeto #BtnResponsavel").kendoButton({
       spriteCssClass: "k-pg-icon k-i-l1-c2",
       click: function(e){
-        OpenWindow(false, "ConsultaResponsavel", "controller/ctrResponsavel.php?action=winConsulta&frmResult=frmCadastroEtapaProjeto", "Consulta de Responsaveis")
+        OpenWindow(true, "ConsultaResponsavel", "controller/ctrResponsavel.php?action=winConsulta", "Consulta de Responsaveis", "frmCadastroEtapaProjeto")
       }
     });
 

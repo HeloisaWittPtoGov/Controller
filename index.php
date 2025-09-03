@@ -62,7 +62,7 @@
     /**
      * Função para abrir janela - sobrescrita do `OpenWindow` original usado no sistema (Esta é apenas usada para treinamento)
      **/
-    function OpenWindow(blModal, nmJanela, dsUrlController, dsTitulo = '') {
+    function OpenWindow(blModal, nmJanela, dsUrlController, dsTitulo = '', frmResult = '') {
       if ($('#Win' + nmJanela).data('kendoWindow')) {
         $('#Win' + nmJanela).data('kendoWindow').close()
       }
@@ -73,9 +73,9 @@
         title: dsTitulo,
         modal: blModal,
         content: dsUrlController,
-        height: blModal ? "auto" : $("#DivWindowArea").height() - 26,
+        height: blModal ? (frmResult ? '500px' : 'auto')  : $("#DivWindowArea").height() - 26,
         width: blModal ? "800px" : "99.6%",
-        visible: !blModal,
+        visible: true,
         draggable: blModal,
         resizable: false,
         closable: blModal,

@@ -118,6 +118,31 @@
         {
           type: "spacer"
         },
+         {
+          type: "buttonGroup",
+          buttons: [
+             {
+              id: "BtnSelecionar",
+              spriteCssClass: "k-pg-icon k-i-l1-c1",
+              text: "Selecionar",
+              group: "actions",
+              enable: false,
+              attributes: {
+                "tabindex": "30"
+              },
+              click: function () {
+                var GrdConsultaResponsavel = $("#frmConsultaResponsavel #GrdConsultaResponsavel").data("kendoGrid");
+                var RstResponsavel = GrdConsultaResponsavel.dataItem(GrdConsultaResponsavel.select());
+
+                $("<?=$frmResult?> #idResponsavelEtapaProjeto").val(RstResponsavel.idresponsaveletapaprojeto).change();
+                $("<?=$frmResult?> #nmNome").val(RstResponsavel.nmnome).change();
+
+                $("#WinConsultaResponsavel").data("kendowindow").close();
+                
+              }
+            },
+          ]
+        },
         {
           type:"buttonGroup",
           buttons: [
@@ -127,7 +152,7 @@
               text: "Incluir",
               group: "actions",
               attributes: {
-                "tabindex": "30"
+                "tabindex": "31"
               },
               click: function(){
                 OpenWindow(true, "CadastroResponsavel", "controller/ctrResponsavel.php?action=incluir");
@@ -140,7 +165,7 @@
               group: "actions",
               enable: false,
               attributes: {
-                "tabindex": "31"
+                "tabindex": "32"
               },
               click: function(){
                 var GrdConsultaResponsavel = $("#frmConsultaResponsavel #GrdConsultaResponsavel").data("kendoGrid");

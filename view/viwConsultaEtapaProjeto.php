@@ -155,6 +155,31 @@
         {
           type: "spacer"
         },
+         {
+          type: "buttonGroup",
+          buttons: [
+             {
+              id: "BtnSelecionar",
+              spriteCssClass: "k-pg-icon k-i-l1-c1",
+              text: "Selecionar",
+              group: "actions",
+              enable: false,
+              attributes: {
+                "tabindex": "30"
+              },
+              click: function () {
+                var GrdConsultaEtapaProjeto = $("#frmConsultaEtapaProjeto #GrdConsultaEtapaProjeto").data("kendoGrid");
+                var RstEtapaProjeto = GrdEtapaProjeto.dataItem(GrdEtapaProjeto.select());
+
+                $("<?=$frmResult?> #idEtapaProjeto").val(RstResponsavel.idetapaprojeto).change();
+                $("<?=$frmResult?> #dsDescricao").val(RstResponsavel.dsdescricao).change();
+
+                $("#WinConsultaResponsavel").data("kendowindow").close();
+                
+              }
+            },
+          ]
+        },
         {
           type: "buttonGroup",
           buttons: [
@@ -164,7 +189,7 @@
               text: "Incluir",
               group: "actions",
               attributes: {
-                "tabindex": "30"
+                "tabindex": "31"
               },
               click: function () {
                 OpenWindow(true, "CadastroEtapaProjeto", "controller/ctrEtapaProjeto.php?action=incluir");
@@ -177,7 +202,7 @@
               group: "actions",
               enable: false,
               attributes: {
-                "tabindex": "31"
+                "tabindex": "32"
               },
               click: function () {
                 var GrdConsultaEtapaProjeto = $("#frmConsultaEtapaProjeto #GrdConsultaEtapaProjeto").data("kendoGrid");
@@ -191,7 +216,7 @@
               text: "Fechar",
               group: "actions",
               attributes: {
-                "tabindex": "32"
+                "tabindex": "33"
               },
               click: function() {
                 $("#WinConsultaEtapaProjeto").data("kendoWindow").close();

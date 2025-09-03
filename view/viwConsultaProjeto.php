@@ -140,19 +140,31 @@
         {
           type: "buttonGroup",
           buttons: [
-            {
-              id: "BtnEtapa",
+             {
+              id: "BtnSelecionar",
               spriteCssClass: "k-pg-icon k-i-l1-c1",
-              text: "Etapas",
+              text: "Selecionar",
               group: "actions",
+              enable: true,
               attributes: {
                 "tabindex": "30"
               },
               click: function () {
-                OpenWindow(true, "ConsultaEtapaProjeto", "controller/ctrEtapaProjeto.php?action=winEtapa");
-              }
+                var GrdConsultaProjeto = $("#frmConsultaProjeto #GrdConsultaProjeto").data("kendoGrid");
+                var RstProjeto = GrdConsultaProjeto.dataItem(GrdConsultaProjeto.select());
 
+                $("<?=$frmResult?> #idProjeto").val(RstProjeto.idprojeto).change();
+                $("<?=$frmResult?> #dsTitulo").val(RstProjeto.dstitulo).change();
+
+                $("#WinConsultaProjeto").data("kendowindow").close();
+                
+              }
             },
+          ]
+        },
+        {
+          type: "buttonGroup",
+          buttons: [
             {
               id: "BtnIncluir",
               spriteCssClass: "k-pg-icon k-i-l1-c1",
