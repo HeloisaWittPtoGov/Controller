@@ -6,6 +6,7 @@ require_once '../lib/libDatabase.php';
 require_once '../model/mdlTbEntrega.php';
 require_once '../model/mdlTbProjeto.php';
 require_once '../model/mdlTbEtapaProjeto.php';
+require_once '../model/mdlTbResponsavel.php';
 
 $objTbEntrega = new TbEntrega();
 $objMsg = new Message();
@@ -63,6 +64,7 @@ if(isset($_GET['action']) && $_GET ['action'] == 'ListEntrega'){
       $arrTempor["dsdescricao"] = utf8_encode($objTbEntrega->Get("dsdescricao"));
       $arrTempor["dtentrega"] = utf8_encode($fmt->data($objTbEntrega->Get("dtentrega")));
       $arrTempor["dsobservacao"] = utf8_encode($objTbEntrega->Get("dsobservacao"));
+      $arrTempor["nmresponsavel"]= utf8_encode($objTbEntrega->GetObjTbEtapaProjeto()->GetObjTbResponsavel()->Get('nmresponsavel'));
 
 
       array_push($arrLinhas, $arrTempor);

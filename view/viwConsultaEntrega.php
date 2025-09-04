@@ -113,6 +113,24 @@
         widthPreview: "",
         positionPreview: "6",
         indiceTabPreview: "tabDadosGerais",
+      },
+      {
+        name: "nmresponsavel",
+        type: "string",
+        label: "Responsavel",
+        visibleFilter: "true",
+        orderFilter: "7",
+
+        orderGrid: "7",
+        widthGrid: "",
+        hiddenGrid: "false",
+        headerAttributesGrid: "text-align: center",
+        attibutesGrid: "text-align: center",
+
+        showPreview: "true",
+        widthPreview: "600",
+        positionPreview: "7",
+        indiceTabPreview: "tabDadosGerais",
       }
     ]
      

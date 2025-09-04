@@ -1,5 +1,6 @@
 <?php
 
+
 class TbEntrega{
 //-----------------------------------------------------------------------------------------------------------------------------------------//
   // Métodos de Definição da classe [CLASS]
@@ -58,6 +59,15 @@ class TbEntrega{
       } 
     }
     return $this->objTbEtapaProjeto;
+  }
+ public function GetObjTbResponsavel(){
+    if($this->objTbResponsavel == null){
+      $this->objTbResponsavel = new TbResponsavelEtapaProjeto();
+      if($this->get('idresponsaveletapaprojeto') != ''){
+        $this->objTbResponsavel = TbResponsavelEtapaProjeto::LoadByIdResponsavelEtapaProjeto($this->get('idresponsaveletapaprojeto'));
+      } 
+    }
+    return $this->objTbResponsavel;
   }
 
 
